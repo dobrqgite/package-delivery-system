@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "users")
@@ -49,5 +50,12 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password=" + Arrays.toString(password) +
+                '}';
+    }
 }
