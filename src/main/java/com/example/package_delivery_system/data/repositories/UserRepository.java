@@ -10,7 +10,7 @@ import javax.persistence.NamedNativeQuery;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT * FROM users", nativeQuery = true)
     List<User> findAllUsers();
