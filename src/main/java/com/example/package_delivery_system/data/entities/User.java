@@ -11,6 +11,9 @@ import java.util.Arrays;
 @Table(name = "users")
 public class User extends BaseEntity {
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "full_name")
     private String fullName;
 
@@ -18,13 +21,38 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(name = "password", nullable = false)
-    private char[] password;
+    private String password;
 
     @OneToOne(mappedBy = "user")
     private Customer customer;
 
     @OneToOne(mappedBy = "user")
     private Employee employee;
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     public String getFullName() {
         return fullName;
@@ -42,20 +70,12 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", password=" + Arrays.toString(password) +
-                '}';
-    }
 }
