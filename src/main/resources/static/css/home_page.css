@@ -1,50 +1,54 @@
-#default-navbar, #default-footer{
-	background: linear-gradient(120deg, #0cf9e5, #5a84eb);
+#default-navbar,
+#default-footer {
+    background: linear-gradient(120deg, #0cf9e5, #5a84eb);
 }
 
-.signin, .signup{
-	background-color: #5a84eb;
-	color: white;
-	border-color:  #0cf9e5;
+.signin,
+.signup {
+    background-color: #5a84eb;
+    color: white;
+    border-color: #0cf9e5;
 }
 
-#footer-info{
-	color: white;
-
+#footer-info {
+    color: white;
 }
 
-.links{
-	text-decoration: none;
-}
- 
-#navbarDropdown{
-	color: white;
+.links {
+    text-decoration: none;
 }
 
-#default-footer{
-	margin-top: 100px;
+#navbarDropdown {
+    color: white;
+}
+
+#default-footer {
+    margin-top: 100px;
 }
 
 .card {
     box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
     background: linear-gradient(120deg, #0cf9e5, #5a84eb);
-
-
 }
+
 .card .card-header {
     font-weight: 500;
     color: blue;
 }
+
 .card-header:first-child {
     border-radius: 0.35rem 0.35rem 0 0;
 }
+
 .card-header {
     padding: 1rem 1.35rem;
     margin-bottom: 0;
     background-color: rgba(33, 40, 50, 0.03);
     border-bottom: 1px solid rgba(33, 40, 50, 0.125);
 }
-.form-control, .dataTable-input {
+
+.form-control,
+.dataTable-input {
     display: block;
     width: 100%;
     padding: 0.875rem 1.125rem;
@@ -66,6 +70,7 @@
     color: #0061f2;
     border-bottom-color: #0061f2;
 }
+
 .nav-borders .nav-link {
     color: #69707a;
     border-bottom-width: 0.125rem;
@@ -79,14 +84,13 @@
     margin-right: 1rem;
 }
 
-#search-field{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	background-color: white;
-	width: 500px;
-	height: 200px;
-	border-radius: 25px;
+#search-field {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 500px;
+    height: 200px;
+    border-radius: 25px;
 }
-
