@@ -5,7 +5,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "addresses")
-public class Address extends BaseEntity {
+public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "country")
     private String country;

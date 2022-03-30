@@ -8,6 +8,18 @@ public class UserRegisterDto {
     @NotNull
     private String username;
 
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
+    private String phone;
+
+    @NotNull
+    private String UCN;
+
     @Email
     @NotNull
     private String email;
@@ -24,6 +36,38 @@ public class UserRegisterDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUCN() {
+        return UCN;
+    }
+
+    public void setUCN(String UCN) {
+        this.UCN = UCN;
     }
 
     public String getEmail() {

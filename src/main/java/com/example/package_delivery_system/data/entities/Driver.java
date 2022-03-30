@@ -5,7 +5,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "drivers")
-public class Driver extends BaseEntity{
+public class Driver {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "employee_id", nullable = false)

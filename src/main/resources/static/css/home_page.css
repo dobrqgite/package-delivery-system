@@ -47,6 +47,17 @@
     border-bottom: 1px solid rgba(33, 40, 50, 0.125);
 }
 
+.form-signin {
+    width: 400px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 100px;
+}
+
+.form-floating {
+    margin: 15px 0px 15px 0px;
+}
+
 .form-control,
 .dataTable-input {
     display: block;

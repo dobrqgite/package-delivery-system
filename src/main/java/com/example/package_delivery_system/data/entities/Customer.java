@@ -5,7 +5,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
-public class Customer extends BaseEntity {
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "phone_number")
     private String phoneNumber;

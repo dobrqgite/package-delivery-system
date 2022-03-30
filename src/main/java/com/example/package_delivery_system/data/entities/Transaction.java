@@ -5,7 +5,11 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transactions")
-public class Transaction extends BaseEntity{
+public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "payer_id", nullable = false)

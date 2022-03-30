@@ -7,7 +7,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vehicles")
-public class Vehicle extends BaseEntity {
+public class Vehicle {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)

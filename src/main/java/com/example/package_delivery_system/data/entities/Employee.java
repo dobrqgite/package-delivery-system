@@ -6,7 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
-public class Employee extends BaseEntity{
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)

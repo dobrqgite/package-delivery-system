@@ -4,10 +4,10 @@ import com.example.package_delivery_system.data.dtos.UserRegisterDto;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping(value = "/customers")
 public class UserController extends BaseController {
 
     private final UserServiceImpl userService;
@@ -16,22 +16,27 @@ public class UserController extends BaseController {
         this.userService = userService;
     }
 
-
-    @GetMapping("/customers/signup")
+    @GetMapping("/signup")
     public String register(){
         return "user/signup";
     }
 
-    //TODO: FIX!NOT SAVING USERS IN DB AND NOT REDIRECTING!!!
-    @PostMapping("/customers/signup")
-    public String register(UserRegisterDto userToRegister, Model model){
+    @PostMapping("/signup")
+    public String register(UserRegisterDto userToRegister, Model model) {
         if (this.userService.register(userToRegister)){
-            return "redirect:/www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+            return "/user/login";
         }
 
         model.addAttribute("error", "Something went horribly wrong!");
 
-        return "/customers/signup";
+        return "/user/signup";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "user/login";
+    }
+
+
 
 }

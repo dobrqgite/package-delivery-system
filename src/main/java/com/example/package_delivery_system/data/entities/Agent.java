@@ -1,13 +1,14 @@
 package com.example.package_delivery_system.data.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "agents")
-public class Agent extends BaseEntity {
+public class Agent {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "employee_id", nullable = false)

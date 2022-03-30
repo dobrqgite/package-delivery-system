@@ -4,7 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "offices")
-public class Office extends BaseEntity {
+public class Office {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "name")
     private String name;
