@@ -50,6 +50,6 @@ public class UserController extends BaseController {
 
     @GetMapping("/logged_in_homepage")
     public String getLoggedInHomepage(){
-        return "logged_in_homepage";
+        return "user/logged_in_homepage";
     }
 }

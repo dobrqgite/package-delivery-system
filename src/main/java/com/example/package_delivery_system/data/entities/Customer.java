@@ -11,9 +11,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -24,15 +21,6 @@ public class Customer {
     @OneToMany(mappedBy = "payerId")
     private List<Transaction> transaction;
 
-
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public User getUser() {
         return user;
