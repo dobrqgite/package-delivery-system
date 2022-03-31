@@ -41,26 +41,27 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.existsByUsernameOrEmail(username, eMail)) {
             System.out.printf(UserExceptions.USER_ALREADY_EXISTS, username);
             return false;
-        }
-
-        if (!password.equals(confirmPassword)) {
+        } else if (!password.equals(confirmPassword)) {
             System.out.println(UserExceptions.PASSWORDS_DO_NOT_MATCH);
             return false;
+        } else if (this.userRepository.existsByPhone(phone)) {
+            System.out.println(UserExceptions.PHONE_ALREADY_EXISTS);
+            return false;
+        } else {
+
+            User user = new User();
+            user.setFullName(firstName + " " + lastName);
+            user.setUsername(username);
+            user.setPhone(phone);
+            user.setUCN(UCN);
+            user.setEmail(eMail);
+            user.setPassword(passwordEncoder.encode(password));
+
+            this.userRepository.save(user);
+            this.modelMapper.map(user, UserResponseDto.class);
+
+            return true;
         }
-
-        User user = new User();
-        user.setFullName(firstName + " " + lastName);
-        user.setUsername(username);
-        user.setPhone(phone);
-        user.setUCN(UCN);
-        user.setEmail(eMail);
-        user.setPassword(passwordEncoder.encode(password));
-
-        this.userRepository.save(user);
-
-        this.modelMapper.map(user, UserResponseDto.class);
-
-        return true;
     }
 
     @Override

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/home_page.css">
+    <title>Slowlee</title>
+
+</head>
+
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/home">
+                    <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
+
+                <div style="margin-right: 50px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Profile</a>
+                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown" style="right: 50px;">
+                                <li><a class="dropdown-item" href="edit_profile.html">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">My orders</a></li>
+                                <li><a class="dropdown-item" href="#">Payment History</a></li>
+                                <li><a class="dropdown-item" href="DefaultHomePage.html">Sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+
+
+
+<div class="container-fluid" style="margin: 20px 100px 100px 100px; width: 90%;">
+    <div class="row">
+        <div class="col-2" style="margin-top: 100px">
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" color="pink" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                </svg> - sent
+            </p>
+
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" color="blanchedalmond" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                </svg> - receiving
+            </p>
+        </div>
+        <div class="col-6">
+            <h1>My Packages</h1>
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#exampleModal" style="float: right; margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#exampleModal" style="float: right; margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#exampleModal" style="float: right; margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#exampleModal" style="float: right; margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Package details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>details go here</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center text-lg-start bg-light text-muted " id="default-footer">
+    <section class="d-flex justify-content-center justify-content-lg-between p-1 border-bottom">
+        <div class="container text-center text-md-start mt-1" id="footer-info">
+            <div class="row mt-3">
+                <div class="col-md-2 col-lg-1 col-xl-2 mx-auto mb-1">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-1">Useful links</h6>
+
+                    <p><a href="#!" class="text-reset links">About Us</a></p>
+                    <p><a href="#!" class="text-reset links">Contant Us</a></p>
+                    <p><a href="#!" class="text-reset links">Terms and Conditions</a></p>
+                    <p><a href="#!" class="text-reset links">Help</a></p>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-2">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-2">
+                        Contact
+                    </h6>
+                    <p><i class="fas fa-home me-3"></i>Sofia, 109 Vertigo Business Tower</p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i> AmadeusGroupCompany@yahoo.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); color: white; ">
+        © 2022 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">TeamDobrqgi</a>
+    </div>
+</footer>
+
+</body>
+
+</html>

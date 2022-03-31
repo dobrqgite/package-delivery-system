@@ -16,15 +16,16 @@ public class UserController extends BaseController {
         this.userService = userService;
     }
 
+
     @GetMapping("/signup")
-    public String register(){
+    public String register() {
         return "user/signup";
     }
 
     @PostMapping("/signup")
     public String register(UserRegisterDto userToRegister, Model model) {
-        if (this.userService.register(userToRegister)){
-            return "/user/login";
+        if (this.userService.register(userToRegister)) {
+            return "user/login";
         }
 
         model.addAttribute("error", "Something went horribly wrong!");
@@ -33,10 +34,22 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "user/login";
     }
 
+    //TODO: add login functionality
 
 
+    @GetMapping("/edit_profile")
+    public String editProfile(){
+        return "user/edit_profile";
+    }
+    //TODO: add edit profile functionality!
+
+
+    @GetMapping("/logged_in_homepage")
+    public String getLoggedInHomepage(){
+        return "logged_in_homepage";
+    }
 }
