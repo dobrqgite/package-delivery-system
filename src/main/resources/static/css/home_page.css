@@ -32,7 +32,9 @@
 
 .card {
     box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
-    background: linear-gradient(120deg, #0cf9e5, #5a84eb);
+    /* background: linear-gradient(120deg, #0cf9e5, #5a84eb); */
+    border-width: 4px;
+    -webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#0cf9e5), to(#5a84eb)) 2 repeat;
 }
 
 .card .card-header {
@@ -91,10 +93,7 @@
     border-bottom-width: 0.125rem;
     border-bottom-style: solid;
     border-bottom-color: transparent;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem 0;
     margin-left: 1rem;
     margin-right: 1rem;
 }
