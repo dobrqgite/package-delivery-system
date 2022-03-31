@@ -1,3 +1,7 @@
+.div {
+    overflow-x: hidden;
+}
+
 #default-navbar,
 #default-footer {
     background: linear-gradient(120deg, #0cf9e5, #5a84eb);
