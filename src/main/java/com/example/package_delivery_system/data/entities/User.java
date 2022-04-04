@@ -1,11 +1,19 @@
 package com.example.package_delivery_system.data.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -30,12 +38,19 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-
     @OneToOne(mappedBy = "user")
-    private Customer customer;
+    private Address address;
 
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
+    @Nullable
+    @ManyToMany
+    @JoinTable(
+            name = "users_vehicles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehicle_id"))
+    private Set<Vehicle> vehicles;
+
+    @OneToMany(mappedBy = "payerId")
+    private List<Transaction> transaction;
 
 
-  }
+}

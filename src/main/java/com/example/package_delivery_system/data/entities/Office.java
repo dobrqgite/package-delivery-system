@@ -1,9 +1,16 @@
 package com.example.package_delivery_system.data.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "offices")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Office {
 
     @Id
@@ -16,13 +23,4 @@ public class Office {
     @OneToOne
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
