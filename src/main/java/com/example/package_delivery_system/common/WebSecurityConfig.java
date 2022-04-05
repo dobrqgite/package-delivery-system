@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    //TODO:FIX AUTHORIZE REQUESTS
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
