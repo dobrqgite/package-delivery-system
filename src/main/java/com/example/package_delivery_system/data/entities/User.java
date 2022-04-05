@@ -1,12 +1,23 @@
 package com.example.package_delivery_system.data.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.lang.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User {
+@Getter
+@Setter
+@NoArgsConstructor
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,83 +41,55 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-
     @OneToOne(mappedBy = "user")
-    private Customer customer;
+    private Address address;
 
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
+    @Nullable
+    @ManyToMany
+    @JoinTable(
+            name = "users_vehicles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehicle_id"))
+    private Set<Vehicle> vehicles;
 
-    public Long getId() {
-        return id;
+    @OneToMany(mappedBy = "payerId")
+    private List<Transaction> transaction;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+
+        return  authorities;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUCN() {
-        return UCN;
-    }
-
-    public void setUCN(String UCN) {
-        this.UCN = UCN;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -1,10 +1,17 @@
 package com.example.package_delivery_system.data.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transactions")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Transaction {
 
     @Id
@@ -13,7 +20,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "payer_id", nullable = false)
-    private Customer payerId;
+    private User payerId;
 
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;
@@ -24,37 +31,4 @@ public class Transaction {
     @OneToOne
     @JoinColumn(name = "package_id")
     private Package packageId;
-
-
-    public Customer getPayerId() {
-        return payerId;
-    }
-
-    public void setPayerId(Customer payerId) {
-        this.payerId = payerId;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Package getPackageId() {
-        return packageId;
-    }
-
-    public void setPackageId(Package packageId) {
-        this.packageId = packageId;
-    }
 }

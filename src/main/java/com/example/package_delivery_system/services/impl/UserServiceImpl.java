@@ -8,23 +8,21 @@ import com.example.package_delivery_system.data.entities.User;
 import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
-    private final PasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository,
-                           ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
-
+    @Autowired
+    private  UserRepository userRepository;
+    @Autowired
+    private  ModelMapper modelMapper;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
     @Override
     public boolean register(UserRegisterDto userRegisterDto) {
@@ -67,5 +65,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login(UserLoginDto userLoginDto) {
         return false;
+    }
+
+    // implemented by UserDetailsService
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
