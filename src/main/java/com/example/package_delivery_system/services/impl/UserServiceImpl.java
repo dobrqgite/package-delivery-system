@@ -47,16 +47,17 @@ public class UserServiceImpl implements UserService {
             return false;
         } else {
 
-            User user = new User();
-            user.setFullName(firstName + " " + lastName);
-            user.setUsername(username);
-            user.setPhone(phone);
-            user.setUCN(UCN);
-            user.setEmail(eMail);
-            user.setPassword(passwordEncoder.encode(password));
+//            User user = new User();
+//            user.setFullName(firstName + " " + lastName);
+//            user.setUsername(username);
+//            user.setPhone(phone);
+//            user.setUCN(UCN);
+//            user.setEmail(eMail);
+//            user.setPassword(passwordEncoder.encode(password));
+
+            User user = this.modelMapper.map(userRegisterDto, User.class);
 
             this.userRepository.save(user);
-            this.modelMapper.map(user, UserResponseDto.class);
 
             return true;
         }

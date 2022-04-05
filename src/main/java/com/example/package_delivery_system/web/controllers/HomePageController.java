@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomePageController extends BaseController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String viewHome() {
         return "user/DefaultHomePage";
     }
