@@ -46,30 +46,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/user/signup").permitAll()
-                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
-                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
-                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/user/signup", "/user/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin().loginPage("/user/login")
                 .and()
                 .logout().permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
-        ;
-//        http.authorizeRequests()
-//                .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
-//                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
-//                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
-//                .antMatchers("/delete/**").hasAuthority("ADMIN")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().permitAll()
-//                .and()
-//                .logout().permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/403")
-//        ;
+                .exceptionHandling().accessDeniedPage("/403");
     }
 }

@@ -20,7 +20,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "payer_id", nullable = false)
-    private User payerId;
+    private UserEntity payerId;
 
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;

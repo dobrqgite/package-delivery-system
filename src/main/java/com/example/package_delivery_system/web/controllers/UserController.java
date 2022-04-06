@@ -1,14 +1,18 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.UserRegisterDto;
+import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/user")
-public class UserController extends BaseController {
+public class UserController {
 
     private final UserServiceImpl userService;
 
@@ -23,23 +27,16 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("/signup")
-    public String register(UserRegisterDto userToRegister, Model model) {
-        if (this.userService.register(userToRegister)) {
+    public String register(UserRegisterDto userToRegister) {
+        this.userService.register(userToRegister);
             return "user/login";
-        }
-
-        model.addAttribute("error", "Something went horribly wrong!");
-
-        return "/user/signup";
     }
+
 
     @GetMapping("/login")
     public String login() {
-        return "user/login";
+        return "redirect:/gateway";
     }
-
-    //TODO: add login functionality
-
 
     @GetMapping("/edit_profile")
     public String editProfile(){
@@ -52,4 +49,25 @@ public class UserController extends BaseController {
     public String getLoggedInHomepage(){
         return "user/logged_in_homepage";
     }
+
+
+    @GetMapping("/gateway")
+    public String gateway(Authentication authentication){
+        //authentication - currently logged in user(principal)
+        Collection<Role> userRoles =
+                authentication.getAuthorities()
+                .stream()
+                .map(role -> (Role) role)
+                .collect(Collectors.toList());
+
+        for (Role userRole : userRoles) {
+            if (userRole.getAuthority().equals("ADMIN")){
+            return "redirect:/admin/admin_home";
+            }
+            //TODO:ADD other pages for specific roles!
+        }
+
+        return "tup si na kopele";
+    }
+
 }

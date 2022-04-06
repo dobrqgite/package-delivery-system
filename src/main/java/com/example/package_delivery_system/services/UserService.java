@@ -2,11 +2,14 @@ package com.example.package_delivery_system.services;
 
 import com.example.package_delivery_system.data.dtos.UserLoginDto;
 import com.example.package_delivery_system.data.dtos.UserRegisterDto;
+import com.example.package_delivery_system.data.entities.Role;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService  extends UserDetailsService {
+import java.util.Collection;
 
-    boolean register(UserRegisterDto userRegisterDto);
+public interface UserService extends UserDetailsService {
+
+    void register(UserRegisterDto userRegisterDto);
 
     boolean login(UserLoginDto userLoginDto);
 

@@ -1,7 +1,8 @@
 package com.example.package_delivery_system.data.repositories;
 
 
-import com.example.package_delivery_system.data.entities.User;
+import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.data.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,17 +10,19 @@ import javax.persistence.NamedNativeQuery;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    List<User> findAll();
+    List<UserEntity> findAll();
 
-    User findAllById(Long id);
+    UserEntity findAllById(Long id);
 
-    User findAllByEmail(String email);
+    UserEntity findAllByEmail(String email);
 
-    User findUserByFullName(String fullName);
+    UserEntity findByUsername(String username);
 
-    User findByUsernameAndEmail(String username, String email);
+    UserEntity findUserByFullName(String fullName);
+
+    UserEntity findByUsernameAndEmail(String username, String email);
 
     boolean existsByUsernameOrEmail(String username, String email);
 
