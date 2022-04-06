@@ -2,11 +2,9 @@ package com.example.package_delivery_system.data.repositories;
 
 
 import com.example.package_delivery_system.data.entities.UserEntity;
-import com.example.package_delivery_system.data.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NamedNativeQuery;
 import java.util.List;
 
 @Repository
