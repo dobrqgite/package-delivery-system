@@ -32,24 +32,20 @@ public class UserController {
             return "user/login";
     }
 
-
     @GetMapping("/login")
     public String login() {
-        return "redirect:/gateway";
+        return "/user/login";
     }
 
     @GetMapping("/edit_profile")
     public String editProfile(){
         return "user/edit_profile";
     }
-    //TODO: add edit profile functionality!
-
 
     @GetMapping("/logged_in_homepage")
     public String getLoggedInHomepage(){
         return "user/logged_in_homepage";
     }
-
 
     @GetMapping("/gateway")
     public String gateway(Authentication authentication){
@@ -64,9 +60,11 @@ public class UserController {
             if (userRole.getAuthority().equals("ADMIN")){
             return "redirect:/admin/admin_home";
             }
+            else if (userRole.getAuthority().equals("CUSTOMER")){
+                return "redirect:/user/logged_in_homepage";
+            }
             //TODO:ADD other pages for specific roles!
         }
-
         return "tup si na kopele";
     }
 
