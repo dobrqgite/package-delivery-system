@@ -39,12 +39,12 @@ public class UserController {
         return "/user/login";
     }
 
-    @GetMapping("/edit_profile")
+    @GetMapping("/edit-profile")
     public String editProfile(){
         return "user/edit_profile";
     }
 
-    @GetMapping("/logged_in_homepage")
+    @GetMapping("/logged-in-homepage")
     public String getLoggedInHomepage(){
         return "user/logged_in_homepage";
     }
@@ -60,10 +60,10 @@ public class UserController {
 
         for (Role userRole : userRoles) {
             if (userRole.getAuthority().equals("ADMIN")){
-            return "redirect:/admin/admin_home";
+            return "redirect:/admin/admin-home";
             }
             else if (userRole.getAuthority().equals("CUSTOMER")){
-                return "redirect:/user/logged_in_homepage";
+                return "redirect:/user/logged-in-homepage";
             }
             //TODO:ADD other pages for specific roles!
         }
