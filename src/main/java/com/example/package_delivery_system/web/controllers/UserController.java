@@ -3,6 +3,7 @@ package com.example.package_delivery_system.web.controllers;
 import com.example.package_delivery_system.data.dtos.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class UserController {
 
     private final UserServiceImpl userService;
 
+    @Autowired
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
@@ -65,7 +67,7 @@ public class UserController {
             }
             //TODO:ADD other pages for specific roles!
         }
-        return "tup si na kopele";
+        return "redirect:/";
     }
 
 }
