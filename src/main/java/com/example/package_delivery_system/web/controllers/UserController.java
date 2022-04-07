@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/signup")
     public String register(UserRegisterDto userToRegister) {
         this.userService.register(userToRegister);
-            return "user/login";
+            return "/user/login";
     }
 
     @GetMapping("/login")
@@ -39,14 +39,14 @@ public class UserController {
         return "/user/login";
     }
 
+    @GetMapping("/logged-in-homepage")
+    public String getLoggedInHomepage(){
+        return "/user/logged_in_homepage";
+    }
+
     @GetMapping("/edit-profile")
     public String editProfile(){
         return "user/edit_profile";
-    }
-
-    @GetMapping("/logged-in-homepage")
-    public String getLoggedInHomepage(){
-        return "user/logged_in_homepage";
     }
 
     @GetMapping("/gateway")

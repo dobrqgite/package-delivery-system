@@ -3,7 +3,6 @@ package com.example.package_delivery_system.common;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,13 +59,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //TODO:FIX AUTHORIZE REQUESTS
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        //TODO: ADD ANT MATCHER TO HANDLE ADMIN VIEW(ADMIN SHOULD SEE EVERYTHING)
         http
         .cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/", "/user/signup", "/user/login", "/user/gateway").permitAll()
-                .antMatchers("/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/user/login")
