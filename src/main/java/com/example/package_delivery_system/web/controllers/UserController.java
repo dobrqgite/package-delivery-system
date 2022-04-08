@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.http.HttpRequest;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -40,6 +42,12 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "/user/login";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
