@@ -56,17 +56,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    //TODO:FIX AUTHORIZE REQUESTS
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         //TODO: ADD ANT MATCHER TO HANDLE ADMIN VIEW(ADMIN SHOULD SEE EVERYTHING)
         http
-        .cors().and().csrf().disable()
+                .cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/images/**").permitAll()
-                .antMatchers("/", "/user/signup", "/user/login").permitAll()
+                .antMatchers("/css/**", "/images/**", "/").permitAll()
+                .antMatchers("/user/signup", "/user/login").anonymous()
+                .antMatchers("/user/edit-profile", "/user/user-index", "/user/profile", "/user/gateway").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers("/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/user/login")
@@ -76,6 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .exceptionHandling().accessDeniedPage("/403.html");
     }
 }
