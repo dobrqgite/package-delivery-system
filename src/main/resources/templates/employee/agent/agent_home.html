@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/templates.css}">
     <title>Slowlee</title>
 
 </head>
 
-<body class="text-center">
+<body>
     <div class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" th:href="@{/user/user-index}">
                     <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
+
+                <div class="col-8">
+                    <div class="search__container">
+                        <label class="track-order">
+                        <input class="search__input" type="text" placeholder="Type your Tracking №...">
+                    </label>
+                    </div>
+                </div>
+                <div style="margin-right: 50px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Profile</a>
+                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown" style="right: 50px;">
+                                <li><a class="dropdown-item" th:href="@{/user/edit-profile}">Edit</a></li>
+                                <li><a class="dropdown-item" th:href="@{/user/profile}">Drivers</a></li>
+                                <li><a class="dropdown-item" th:href="@{#}">Transactions</a></li>
+                                <li><a class="dropdown-item" th:href="@{/}">Sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
 
-
-
-
-
-    <main class="form-signin">
-        <form th:action="@{/user/login}" method="post">
-            <h1 class="h3 mb-3 fw-normal"> Please log in</h1>
-
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required="required">
-                <label for="floatingInput">Email address</label>
-            </div>
-
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required="required">
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div>
-                <p>Don't have an account? <a th:href="@{/user/signup}">Sign up!</a></p>
-            </div>
-
-            <div class="checkbox mb-3">
-                <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            </div>
-
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-        </form>
-    </main>
-
-    <footer class="text-center text-lg-start bg-light text-muted footer">
+    <footer class="text-center text-lg-start bg-light text-muted " id="default-footer">
         <section class="d-flex justify-content-center justify-content-lg-between p-1 border-bottom">
-            <div class="container text-center text-md-start mt-1">
+            <div class="container text-center text-md-start mt-1" id="footer-info">
                 <div class="row mt-3">
                     <div class="col-md-2 col-lg-1 col-xl-2 mx-auto mb-1">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-1">Useful links</h6>
 
                         <p><a href="#!" class="text-reset links">About Us</a></p>
-                        <p><a href="#!" class="text-reset links">Contact Us</a></p>
+                        <p><a href="#!" class="text-reset links">Contant Us</a></p>
                         <p><a href="#!" class="text-reset links">Terms and Conditions</a></p>
                         <p><a href="#!" class="text-reset links">Help</a></p>
 
@@ -84,7 +74,7 @@
         </section>
 
         <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); color: white; ">
-            Â© 2022 Copyright:
+            © 2022 Copyright:
             <a class="text-reset fw-bold" href="https://mdbootstrap.com/">TeamDobrqgi</a>
         </div>
     </footer>
