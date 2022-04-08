@@ -10,4 +10,6 @@ public interface UserService extends UserDetailsService {
 
     boolean login(UserLoginDto userLoginDto);
 
+    void seedRoles();
+
 }

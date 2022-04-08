@@ -11,4 +11,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     Role getRoleById(Long id);
 
     Optional<Role> getRoleByAuthority(String authority);
+
+
 }

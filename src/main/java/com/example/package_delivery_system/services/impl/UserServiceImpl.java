@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,11 +37,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserRegisterDto userRegisterDto) {
 
-        //set DEFAULT(CUSTOMER) role to a user
-        Optional<Role> customerRole = this.roleRepository.getRoleByAuthority("CUSTOMER");
-        if (customerRole.isEmpty()) {
-            Role role = new Role("CUSTOMER");
-            this.roleRepository.save(role);
+        if (this.roleRepository.count() == 0){
+            this.seedRoles();
         }
         String username = userRegisterDto.getUsername();
         String firstName = userRegisterDto.getFirstName();
@@ -64,7 +63,11 @@ public class UserServiceImpl implements UserService {
             user.setUCN(UCN);
             user.setEmail(eMail);
             user.setPassword(passwordEncoder.encode(password));
-            user.setRoles(Set.of(roleRepository.getRoleByAuthority("CUSTOMER").get()));
+            if (this.userRepository.count() == 0){
+                user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("ADMIN").get()));
+            } else {
+                user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("CUSTOMER").get()));
+            }
             this.userRepository.save(user);
         }
     }
@@ -72,6 +75,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login(UserLoginDto userLoginDto) {
         return false;
+    }
+
+    @Override
+    public void seedRoles() {
+        Role adminRole = new Role("ADMIN");
+        Role customerRole = new Role("CUSTOMER");
+        Role agentRole = new Role("AGENT");
+        Role driverRole = new Role("DRIVER");
+
+        Set<Role> roles = new HashSet<>();
+
+        roles.add(adminRole);
+        roles.add(customerRole);
+        roles.add(agentRole);
+        roles.add(driverRole);
+
+        this.roleRepository.saveAll(roles);
     }
 
     // implemented by UserDetailsService
