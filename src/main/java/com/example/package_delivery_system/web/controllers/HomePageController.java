@@ -8,7 +8,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String viewHome() {
-        return "user/DefaultHomePage";
+        return "/common/index";
     }
 
 }
