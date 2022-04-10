@@ -75,12 +75,16 @@ public class UserController {
                         .collect(Collectors.toList());
 
         for (Role userRole : userRoles) {
-            if (userRole.getAuthority().equals("ADMIN")) {
-                return "redirect:/admin/admin-home";
-            } else if (userRole.getAuthority().equals("CUSTOMER")) {
-                return "redirect:/user/profile";
+            switch (userRole.getAuthority()) {
+                case "ADMIN":
+                    return "redirect:/admin/admin-home";
+                case "CUSTOMER":
+                    return "redirect:/user/profile";
+                case "AGENT":
+                    return "redirect:/agent/agent-home";
+                case "DRIVER":
+                    return "redirect:/driver/driver-home";
             }
-            //TODO:ADD other pages for specific roles!
         }
         return "redirect:/";
     }
