@@ -1,4 +1,4 @@
-package com.example.package_delivery_system.data.dtos;
+package com.example.package_delivery_system.data.dtos.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

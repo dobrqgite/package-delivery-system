@@ -1,6 +1,6 @@
 package com.example.package_delivery_system.web.controllers;
 
-import com.example.package_delivery_system.data.dtos.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -64,6 +63,8 @@ public class UserController {
     public String getLoggedInHomepage() {
         return "/user/profile";
     }
+
+
 
     @GetMapping("/gateway")
     public String gateway(Authentication authentication) {

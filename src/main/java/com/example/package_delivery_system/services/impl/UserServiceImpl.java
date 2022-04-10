@@ -1,7 +1,7 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.UserLoginDto;
-import com.example.package_delivery_system.data.dtos.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.user.UserLoginDto;
+import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
@@ -68,11 +68,6 @@ public class UserServiceImpl implements UserService {
             }
             this.userRepository.save(user);
         }
-    }
-
-    @Override
-    public boolean login(UserLoginDto userLoginDto) {
-        return false;
     }
 
     @Override
