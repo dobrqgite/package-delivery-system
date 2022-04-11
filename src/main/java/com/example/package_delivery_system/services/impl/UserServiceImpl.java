@@ -2,6 +2,7 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.addressDtos.AddressDto;
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.user.UserResponseDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
@@ -36,16 +37,16 @@ public class UserServiceImpl implements UserService {
         this.addressService = addressService;
     }
 
+    //make method return a response dto
     @Override
     @Transactional
-    public void register(UserRegisterDto userRegisterDto) {
+    public UserResponseDto register(UserRegisterDto userRegisterDto) {
 
-        if (this.roleRepository.count() == 0){
+        if (this.roleRepository.count() == 0) {
             this.seedRoles();
         }
         String username = userRegisterDto.getUsername();
-        String firstName = userRegisterDto.getFirstName();
-        String lastName = userRegisterDto.getLastName();
+        String fullName = userRegisterDto.getFirstName() + " " + userRegisterDto.getLastName();
         String UCN = userRegisterDto.getUCN();
         String phone = userRegisterDto.getPhone();
         String eMail = userRegisterDto.getEmail();
@@ -54,28 +55,33 @@ public class UserServiceImpl implements UserService {
 
         if (this.userRepository.existsByUsernameOrEmail(username, eMail)) {
             System.out.printf(UserExceptions.USER_ALREADY_EXISTS, username);
-        } else if (!password.equals(confirmPassword)) {
-            System.out.println(UserExceptions.PASSWORDS_DO_NOT_MATCH);
-        } else if (this.userRepository.existsByPhone(phone)) {
-            System.out.println(UserExceptions.PHONE_ALREADY_EXISTS);
-        } else {
-            AddressDto userAddress = this.addressService.createUserAddress(userRegisterDto);
-
-            UserEntity user = new UserEntity();
-            user.setFullName(firstName + " " + lastName);
-            user.setUsername(username);
-            user.setPhone(phone);
-            user.setUCN(UCN);
-            user.setAddressId(((AddressServiceImpl)this.addressService).findById(userAddress.getId()));
-            user.setEmail(eMail);
-            user.setPassword(passwordEncoder.encode(password));
-            if (this.userRepository.count() == 0){
-                user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("ADMIN").get()));
-            } else {
-                user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("CUSTOMER").get()));
-            }
-            this.userRepository.save(user);
         }
+        if (!password.equals(confirmPassword)) {
+            System.out.println(UserExceptions.PASSWORDS_DO_NOT_MATCH);
+        }
+        if (this.userRepository.existsByPhone(phone)) {
+            System.out.println(UserExceptions.PHONE_ALREADY_EXISTS);
+        }
+        AddressDto userAddress = this.addressService.createUserAddress(userRegisterDto);
+
+        UserEntity user = new UserEntity();
+        user.setFullName(fullName);
+        user.setUsername(username);
+        user.setPhone(phone);
+        user.setUCN(UCN);
+        user.setAddressId(((AddressServiceImpl) this.addressService).findById(userAddress.getId()));
+        user.setEmail(eMail);
+        user.setPassword(passwordEncoder.encode(password));
+        if (this.userRepository.count() == 0) {
+            user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("ADMIN").get()));
+        } else {
+            user.setRoles(Set.of(this.roleRepository.getRoleByAuthority("CUSTOMER").get()));
+        }
+        this.userRepository.save(user);
+
+
+        UserResponseDto userResponseDto = new UserResponseDto(user.getId(), username, fullName, UCN, phone, eMail);
+        return userResponseDto;
     }
 
     @Override
