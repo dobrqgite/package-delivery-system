@@ -10,13 +10,4 @@ import java.util.List;
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
     List<Address> findAll();
-
-    Address findAddressById(Long id);
-
-    Address findAddressByCountry(String country);
-
-    Address findAddressByTown(String town);
-
-    Address findAddressByFullAddress(String fullAddress);
-
 }

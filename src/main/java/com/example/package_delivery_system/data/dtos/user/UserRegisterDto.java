@@ -27,6 +27,15 @@ public class UserRegisterDto {
     @NotNull
     private String UCN;
 
+    @NotNull
+    private String country;
+
+    @NotNull
+    private String city;
+
+    @NotNull
+    private String fullAddress;
+
     @Email
     @NotNull
     private String email;

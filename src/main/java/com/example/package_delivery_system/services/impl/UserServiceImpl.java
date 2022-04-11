@@ -1,12 +1,13 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.user.UserLoginDto;
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressDto;
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.exceptions.UserExceptions;
+import com.example.package_delivery_system.services.AddressService;
 import com.example.package_delivery_system.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,13 +24,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final AddressService addressService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           RoleRepository roleRepository) {
+                           RoleRepository roleRepository, AddressService addressService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.addressService = addressService;
     }
 
     @Override
@@ -54,11 +57,14 @@ public class UserServiceImpl implements UserService {
         } else if (this.userRepository.existsByPhone(phone)) {
             System.out.println(UserExceptions.PHONE_ALREADY_EXISTS);
         } else {
+            AddressDto userAddress = this.addressService.createUserAddress(userRegisterDto);
+
             UserEntity user = new UserEntity();
             user.setFullName(firstName + " " + lastName);
             user.setUsername(username);
             user.setPhone(phone);
             user.setUCN(UCN);
+            user.setAddressId(((AddressServiceImpl)this.addressService).findById(userAddress.getId()));
             user.setEmail(eMail);
             user.setPassword(passwordEncoder.encode(password));
             if (this.userRepository.count() == 0){

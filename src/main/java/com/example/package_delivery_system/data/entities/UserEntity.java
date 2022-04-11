@@ -42,7 +42,7 @@ public class UserEntity implements UserDetails {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "address_id", nullable = false)
+    @JoinColumn(name = "address_id")
     private Address addressId;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
