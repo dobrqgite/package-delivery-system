@@ -42,41 +42,8 @@
         </nav>
     </div>
 
-    <footer class="text-center text-lg-start bg-light text-muted " id="default-footer">
-        <section class="d-flex justify-content-center justify-content-lg-between p-1 border-bottom">
-            <div class="container text-center text-md-start mt-1" id="footer-info">
-                <div class="row mt-3">
-                    <div class="col-md-2 col-lg-1 col-xl-2 mx-auto mb-1">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-1">Useful links</h6>
-
-                        <p><a href="#!" class="text-reset links">About Us</a></p>
-                        <p><a href="#!" class="text-reset links">Contact Us</a></p>
-                        <p><a href="#!" class="text-reset links">Terms and Conditions</a></p>
-                        <p><a href="#!" class="text-reset links">Help</a></p>
-
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-2">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-2">
-                            Contact
-                        </h6>
-                        <p><i class="fas fa-home me-3"></i>Sofia, 109 Vertigo Business Tower</p>
-                        <p>
-                            <i class="fas fa-envelope me-3"></i> AmadeusGroupCompany@yahoo.com
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); color: white; ">
-            © 2022 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">TeamDobrqgi</a>
-        </div>
+    <footer>
+        <div th:replace="fragments/footer.html :: footer"></div>
     </footer>
 
 </body>
