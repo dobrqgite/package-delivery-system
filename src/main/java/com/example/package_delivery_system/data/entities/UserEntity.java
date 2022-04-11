@@ -20,7 +20,7 @@ import java.util.Set;
 public class UserEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "username")
@@ -42,8 +42,7 @@ public class UserEntity implements UserDetails {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address addressId;
+    private Address address;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(

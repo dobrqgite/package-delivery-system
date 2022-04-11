@@ -1,15 +1,17 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.addressDtos.AddressDto;
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.user.UserResponseDto;
+import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
-import com.example.package_delivery_system.exceptions.UserExceptions;
+import com.example.package_delivery_system.exceptions.BadRequestException;
 import com.example.package_delivery_system.services.AddressService;
 import com.example.package_delivery_system.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,19 +24,29 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
+    public static final String USER_ALREADY_EXISTS = "User with name %s already exists!%n";
+
+    public static final String PASSWORDS_DO_NOT_MATCH = "Passwords do not match!";
+
+    public static final String PHONE_ALREADY_EXISTS = "The phone you entered already exists!";
+
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final AddressService addressService;
+    private final AddressRepository addressRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           RoleRepository roleRepository, AddressService addressService) {
+                           RoleRepository roleRepository, AddressService addressService, AddressRepository addressRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.addressService = addressService;
+        this.addressRepository = addressRepository;
+        this.modelMapper = new ModelMapper();
     }
 
     //make method return a response dto
@@ -54,22 +66,23 @@ public class UserServiceImpl implements UserService {
         String confirmPassword = userRegisterDto.getConfirmPassword();
 
         if (this.userRepository.existsByUsernameOrEmail(username, eMail)) {
-            System.out.printf(UserExceptions.USER_ALREADY_EXISTS, username);
+            throw new BadRequestException(String.format(USER_ALREADY_EXISTS, username));
         }
         if (!password.equals(confirmPassword)) {
-            System.out.println(UserExceptions.PASSWORDS_DO_NOT_MATCH);
+            throw new BadRequestException(PASSWORDS_DO_NOT_MATCH);
         }
         if (this.userRepository.existsByPhone(phone)) {
-            System.out.println(UserExceptions.PHONE_ALREADY_EXISTS);
+            throw new BadRequestException(PHONE_ALREADY_EXISTS);
         }
-        AddressDto userAddress = this.addressService.createUserAddress(userRegisterDto);
+        Address userAddress = this.addressService.createUserAddress(userRegisterDto);
+
 
         UserEntity user = new UserEntity();
         user.setFullName(fullName);
         user.setUsername(username);
         user.setPhone(phone);
         user.setUCN(UCN);
-        user.setAddressId(((AddressServiceImpl) this.addressService).findById(userAddress.getId()));
+        user.setAddress(userAddress);
         user.setEmail(eMail);
         user.setPassword(passwordEncoder.encode(password));
         if (this.userRepository.count() == 0) {
@@ -79,9 +92,7 @@ public class UserServiceImpl implements UserService {
         }
         this.userRepository.save(user);
 
-
-        UserResponseDto userResponseDto = new UserResponseDto(user.getId(), username, fullName, UCN, phone, eMail);
-        return userResponseDto;
+        return new UserResponseDto(user.getId(), username, fullName, UCN, phone, eMail);
     }
 
     @Override

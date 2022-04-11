@@ -26,18 +26,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional
-    public AddressDto createUserAddress(UserRegisterDto userAddressFromRegisterDto) {
+    public Address createUserAddress(UserRegisterDto userAddressFromRegisterDto) {
 
         String country = userAddressFromRegisterDto.getCountry();
         String city = userAddressFromRegisterDto.getCity();
         String fullAddress = userAddressFromRegisterDto.getFullAddress();
 
-        Address address = new Address();
-        address.setCountry(country);
-        address.setCity(city);
-        address.setFullAddress(fullAddress);
+        Address address = this.modelMapper.map(userAddressFromRegisterDto, Address.class);
 
-        return this.modelMapper.map(this.addressRepository.save(address), AddressDto.class);
+        return this.addressRepository.save(address);
     }
 
     Address findById(Long id){
