@@ -1,7 +1,10 @@
 package com.example.package_delivery_system.common;
 
+import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
+import com.example.package_delivery_system.services.AddressService;
+import com.example.package_delivery_system.services.impl.AddressServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,19 +25,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final AddressService addressService;
 
     @Autowired
     public WebSecurityConfig(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                             RoleRepository roleRepository) {
+                             RoleRepository roleRepository, AddressService addressService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.addressService = addressService;
+
     }
 
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserServiceImpl(userRepository, passwordEncoder, roleRepository);
+        return new UserServiceImpl(userRepository, passwordEncoder, roleRepository, addressService);
     }
 
     @Bean

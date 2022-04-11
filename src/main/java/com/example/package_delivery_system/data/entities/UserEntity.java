@@ -41,8 +41,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    private Address address;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address addressId;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
@@ -51,7 +52,6 @@ public class UserEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @Nullable
     @ManyToMany
     @JoinTable(
             name = "users_vehicles",
@@ -59,8 +59,12 @@ public class UserEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "vehicle_id"))
     private Set<Vehicle> vehicles;
 
-    @OneToMany(mappedBy = "payerId")
-    private List<Transaction> transaction;
+    @OneToMany(mappedBy = "receiverId")
+    private List<Package> packagesToReceive;
+
+    @OneToMany(mappedBy = "senderId")
+    private List<Package> packagesToSend;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
