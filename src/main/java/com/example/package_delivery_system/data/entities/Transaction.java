@@ -19,8 +19,12 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "payer_id", nullable = false)
-    private UserEntity payerId;
+    @JoinColumn(name = "sender_id", nullable = false)
+    private UserEntity senderId;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private UserEntity receiverId;
 
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;

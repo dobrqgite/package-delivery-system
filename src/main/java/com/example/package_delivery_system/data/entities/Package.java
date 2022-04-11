@@ -19,12 +19,12 @@ public class Package {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "address_to", nullable = false)
-    private Address addressTo;
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private UserEntity receiverId;
 
     @ManyToOne
-    @JoinColumn(name = "address_from", nullable = false)
-    private Address addressFrom;
+    @JoinColumn(name = "sender_id", nullable = false)
+    private UserEntity senderId;
 
     @Column(name = "content")
     private String content;

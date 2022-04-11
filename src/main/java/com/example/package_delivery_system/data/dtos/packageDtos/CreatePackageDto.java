@@ -30,7 +30,7 @@ public class CreatePackageDto {
     length
     sender - get from current session
     receiver
-    add method to validate package size DON'T OVERENGINEER
+    add method to validate package size DON'T OVERENGENEER
      */
 
 }

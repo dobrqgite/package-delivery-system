@@ -27,17 +27,4 @@ public class Address {
     @Column(name = "full_address")
     private String fullAddress;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
-
-    @OneToOne
-    private Office office;
-
-    @OneToMany(mappedBy = "addressFrom")
-    private List<Package> packagesToSend;
-
-
-    @OneToMany(mappedBy = "addressTo")
-    private List<Package> packagesToReceive;
 }
