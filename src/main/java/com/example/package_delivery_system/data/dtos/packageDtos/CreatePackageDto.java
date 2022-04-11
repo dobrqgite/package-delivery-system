@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class CreatePackageDto {
 
-    //what is it?
+    @NotNull
     private String content;
 
     private BigDecimal weight;
@@ -22,5 +23,14 @@ public class CreatePackageDto {
 
     private BigDecimal length;
 
-    private BigDecimal tax;
+    /* content
+    weight
+    height
+    width
+    length
+    sender - get from current session
+    receiver
+    add method to validate package size DON'T OVERENGINEER
+     */
+
 }
