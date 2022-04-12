@@ -42,6 +42,8 @@ public class PackageServiceImpl implements PackageService {
         packageToAdd.setContent(content);
         packageToAdd.setSender(sender);
         packageToAdd.setReceiver(receiver);
+        packageToAdd.setWeight(weight);
+        packageToAdd.setDelivered(false);
         packageToAdd.setDeliveryTax(calculateTax(weight, height, length, width));
 
         this.packageRepository.save(packageToAdd);

@@ -1,11 +1,15 @@
 package com.example.package_delivery_system.web.controllers;
 
+import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.user.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Role;
+import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.services.impl.PackageServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +23,12 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserServiceImpl userService;
+    private final PackageServiceImpl packageService;
 
     @Autowired
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService, PackageServiceImpl packageService) {
         this.userService = userService;
+        this.packageService = packageService;
     }
 
 
@@ -77,7 +83,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/send-package", method = RequestMethod.POST)
-    public String sendPackage() {
+    public String sendPackage(CreatePackageDto createPackageDto, Authentication authentication) {
+        this.packageService.addPackage(createPackageDto, ((UserEntity)authentication.getPrincipal()).getEmail());
         return "/user/send_package";
     }
 
