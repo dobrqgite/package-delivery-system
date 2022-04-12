@@ -71,6 +71,15 @@ public class UserController {
         return "/user/profile";
     }
 
+    @RequestMapping(value = "/send-package", method = RequestMethod.GET)
+    public String getSendPackagePage() {
+        return "/user/send_package";
+    }
+
+    @RequestMapping(value = "/send-package", method = RequestMethod.POST)
+    public String sendPackage() {
+        return "/user/send_package";
+    }
 
 
     @GetMapping("/gateway")
