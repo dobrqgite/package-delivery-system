@@ -11,8 +11,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateDriverDto {
-    //todo:add fields
+public class DriverRegisterDto {
 
     @NotNull
     private String username;

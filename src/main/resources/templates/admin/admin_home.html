@@ -32,52 +32,69 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/admin/register-emloyee}" method="POST">
+                        <form th:action="@{/admin/admin-home}" method="post">
                             <div class="mb-3">
-                                <input type="text" name="username" class="form-control"
+                                <input type="text" name="username" id="username" class="form-control"
                                        aria-describedby="usernameHelp"
                                        placeholder="Username...">
+                                <label for="username">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="firstName" class="form-control"
+                                <input type="text" name="firstName" id="firstName" class="form-control"
                                        aria-describedby="firstnameHelp"
                                        placeholder="First Name...">
+                                <label for="firstName">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="lastName" class="form-control" aria-describedby="lastnameHelp"
+                                <input type="text" name="lastName" id="lastName" class="form-control"
+                                       aria-describedby="lastnameHelp"
                                        placeholder="Last Name...">
+                                <label for="lastName">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="phone" class="form-control" aria-describedby="phoneHelp"
+                                <input type="text" name="phone" id="phone" class="form-control"
+                                       aria-describedby="phoneHelp"
                                        placeholder="Phone...">
+                                <label for="phone">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="UCN" class="form-control" aria-describedby="ucnHelp"
+                                <input type="text" name="UCN" id="UCN" class="form-control" aria-describedby="ucnHelp"
                                        placeholder="UCN...">
+                                <label for="UCN">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="email" name="email" class="form-control" aria-describedby="emailHelp"
+                                <input type="email" name="email" id="email" class="form-control"
+                                       aria-describedby="emailHelp"
                                        placeholder="Email..">
+                                <label for="email">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="country" class="form-control" aria-describedby="countryHelp"
+                                <input type="text" name="country" id="country" class="form-control"
+                                       aria-describedby="countryHelp"
                                        placeholder="Country..">
+                                <label for="country">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="city" class="form-control" aria-describedby="cityHelp"
+                                <input type="text" name="city" id="city" class="form-control"
+                                       aria-describedby="cityHelp"
                                        placeholder="City...">
+                                <label for="city">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="fullAddress" class="form-control"
+                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
                                        placeholder="Full Address..">
+                                <label for="fullAddress">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="password" name="password" class="form-control" aria-describedby="passHelp"
+                                <input type="password" name="password" id="password" class="form-control"
+                                       aria-describedby="passHelp"
                                        placeholder="Password..">
+                                <label for="password">Email address</label>
                             </div>
                             <div class="mb-3">
-                                <input type="password" name="confirmPassword" class="form-control"
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
                                        placeholder="Confirm Password...">
+                                <label for="confirmPassword">Email address</label>
                             </div>
 
                             <div class="col-auto my-1">

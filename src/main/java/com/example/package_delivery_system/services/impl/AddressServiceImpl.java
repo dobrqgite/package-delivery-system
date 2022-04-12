@@ -1,5 +1,6 @@
 package com.example.package_delivery_system.services.impl;
 
+import com.example.package_delivery_system.data.dtos.employeeDtos.DriverRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.repositories.AddressRepository;
@@ -32,6 +33,17 @@ public class AddressServiceImpl implements AddressService {
         String fullAddress = userAddressFromRegisterDto.getFullAddress();
 
         Address address = this.modelMapper.map(userAddressFromRegisterDto, Address.class);
+
+        return this.addressRepository.save(address);
+    }
+
+    @Override
+    public Address createUserAddress(DriverRegisterDto driverAddressFromRegisterDto) {
+        String country = driverAddressFromRegisterDto.getCountry();
+        String city = driverAddressFromRegisterDto.getCity();
+        String fullAddress = driverAddressFromRegisterDto.getFullAddress();
+
+        Address address = this.modelMapper.map(driverAddressFromRegisterDto, Address.class);
 
         return this.addressRepository.save(address);
     }
