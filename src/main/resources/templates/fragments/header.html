@@ -2,28 +2,38 @@
     <div class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/user/user-index}">
-                    <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
-
-                <div class="col-8">
-                    <div class="search__container">
-                        <label class="track-order">
-                        <input class="search__input" type="text" placeholder="Type your Tracking №...">
-                    </label>
+                <div class="row justify-content-between d-flex align-items-center" style="width: 100%;">
+                    <div class="col">
+                        <a class="navbar-brand" th:href="@{/user/user-index}">
+                            <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
                     </div>
-                </div>
-                <div style="margin-right: 50px;">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">My
-                        Profile</a>
-                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown" style="right: 50px;">
-                                <li><a class="dropdown-item" th:href="@{/user/edit-profile}">Edit</a></li>
-                                <li><a class="dropdown-item" th:href="@{/user/profile}">My orders</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Payment History</a></li>
-                                <li><a class="dropdown-item" th:href="@{/user/logout}">Sign out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="col-6">
+                        <div class="search__container">
+                            <label class="track-order">
+                            <input class="search__input" type="text" placeholder="Type your Tracking №...">
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <a th:href="@{/user/send-package}" class="btn btn-primary">Send package</a>
+                            </div>
+                            <div class="col">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">My
+                                    Profile</a>
+                                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown" style="right: 50px;">
+                                            <li><a class="dropdown-item" th:href="@{/user/edit-profile}">Edit</a></li>
+                                            <li><a class="dropdown-item" th:href="@{/user/profile}">My orders</a></li>
+                                            <li><a class="dropdown-item" th:href="@{#}">Payment History</a></li>
+                                            <li><a class="dropdown-item" th:href="@{/user/logout}">Sign out</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
