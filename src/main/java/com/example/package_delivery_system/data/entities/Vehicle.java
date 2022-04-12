@@ -23,8 +23,14 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private VehicleType type;
 
+    @Column
+    private String brand;
+
     @Column(name = "reg_number")
     private String registrationNumber;
+
+    @Column(name = "is_in_use")
+    private boolean isInUse = false;
 
     @Override
     public boolean equals(Object o) {
