@@ -1,6 +1,7 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.user.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class UserController {
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
     public String editProfile() {
         return "/user/edit_profile";
+    }
+
+    //TODO: implement method and query from repository
+    @RequestMapping(value = "/edit-profile", method = RequestMethod.PUT)
+    public UserUpdateDto editCredentials() {
+        return null;
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)

@@ -2,6 +2,7 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.user.UserResponseDto;
+import com.example.package_delivery_system.data.dtos.user.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
@@ -93,6 +94,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
 
         return new UserResponseDto(user.getId(), username, fullName, UCN, phone, eMail);
+    }
+
+    @Override
+    public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {
+        return null;
     }
 
     @Override
