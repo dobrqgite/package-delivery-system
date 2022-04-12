@@ -25,9 +25,15 @@
                 <div class="card-header">Send package</div>
                 <div class="card-body">
                     <form th:action="@{/user/send-package}" th:method="post">
-                        <div class="mb-3">
-                            <label class="small mb-1" for="recipientEmail">Recipient email</label>
-                            <input class="form-control" id="recipientEmail" name="recipientEmail" type="email" placeholder="example@email.com">
+                        <div class="row">
+                            <div class="col">
+                                <label class="small mb-1" for="recipientEmail">Recipient email</label>
+                                <input class="form-control" id="recipientEmail" name="recipientEmail" type="email" placeholder="example@email.com">
+                            </div>
+                            <div class="col-3">
+                                <label class="small mb-1" for="price">Price</label>
+                                <input class="form-control" id="price" name="price" type="number" placeholder="price in levs">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="weight">Weight</label>
