@@ -1,7 +1,6 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.addressDtos.AddressDto;
-import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.services.AddressService;

@@ -16,8 +16,9 @@ public class PackageResponseDto {
 
     private Long id;
 
-    @NotNull
     private String description;
+
+    private String price;
 
     private BigDecimal weight;
 

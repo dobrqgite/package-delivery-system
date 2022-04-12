@@ -15,14 +15,21 @@ public class CreatePackageDto {
     @NotNull
     private String description;
 
+    private BigDecimal price;
+
+    @NotNull
     private BigDecimal weight;
 
+    @NotNull
     private BigDecimal height;
 
+    @NotNull
     private BigDecimal width;
 
+    @NotNull
     private BigDecimal length;
 
+    @NotNull
     private String recipientEmail;
 
 }

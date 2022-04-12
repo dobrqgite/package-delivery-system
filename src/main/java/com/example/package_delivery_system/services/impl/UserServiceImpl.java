@@ -1,8 +1,8 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.user.UserRegisterDto;
-import com.example.package_delivery_system.data.dtos.user.UserResponseDto;
-import com.example.package_delivery_system.data.dtos.user.UserUpdateDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
@@ -95,6 +95,8 @@ public class UserServiceImpl implements UserService {
 
         return modelMapper.map(user, UserResponseDto.class);
     }
+
+    //todo:add creation methods for driver and agent(ADMIN ONLY COMMANDS)
 
     @Override
     public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {

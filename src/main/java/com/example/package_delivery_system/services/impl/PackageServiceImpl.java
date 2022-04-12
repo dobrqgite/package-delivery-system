@@ -35,6 +35,7 @@ public class PackageServiceImpl implements PackageService {
         BigDecimal height = createPackageDto.getHeight();
         BigDecimal width = createPackageDto.getWidth();
         BigDecimal length = createPackageDto.getLength();
+        BigDecimal price = createPackageDto.getPrice();
         UserEntity sender = (UserEntity) userService.loadUserByUsername(currentlyLoggedInUserEmail);
         UserEntity receiver = (UserEntity) userService.loadUserByUsername(createPackageDto.getRecipientEmail());
 
@@ -43,6 +44,7 @@ public class PackageServiceImpl implements PackageService {
         packageToAdd.setSender(sender);
         packageToAdd.setReceiver(receiver);
         packageToAdd.setWeight(weight);
+        packageToAdd.setPrice(price);
         packageToAdd.setDelivered(false);
         packageToAdd.setDeliveryTax(calculateTax(weight, height, length, width));
 

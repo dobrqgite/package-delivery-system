@@ -29,6 +29,9 @@ public class Package {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "price")
+    private BigDecimal price;
+
     @Column(name = "is_delivered", columnDefinition = "tinyint(1) default 0")
     private boolean isDelivered;
 
