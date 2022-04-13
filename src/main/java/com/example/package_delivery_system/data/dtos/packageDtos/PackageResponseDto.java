@@ -29,4 +29,8 @@ public class PackageResponseDto {
 
     private String recipientEmail;
 
+    private String payingUser;
+
+    private String paymentMethod;
+
 }

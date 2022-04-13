@@ -1,11 +1,11 @@
-package com.example.package_delivery_system.services.impl;
+package com.example.package_delivery_system.exceptions.impl;
 
 import com.example.package_delivery_system.data.dtos.vehicleDtos.VehicleDto;
 import com.example.package_delivery_system.data.entities.Vehicle;
 import com.example.package_delivery_system.data.enums.VehicleType;
 import com.example.package_delivery_system.data.repositories.VehicleRepository;
 import com.example.package_delivery_system.exceptions.BadRequestException;
-import com.example.package_delivery_system.services.VehicleService;
+import com.example.package_delivery_system.services.api.VehicleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

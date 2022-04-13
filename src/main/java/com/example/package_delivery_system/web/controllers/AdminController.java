@@ -1,13 +1,9 @@
 package com.example.package_delivery_system.web.controllers;
 
-import com.example.package_delivery_system.services.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin")

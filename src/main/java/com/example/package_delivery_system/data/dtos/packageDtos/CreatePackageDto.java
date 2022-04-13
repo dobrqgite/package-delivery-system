@@ -32,4 +32,10 @@ public class CreatePackageDto {
     @NotNull
     private String recipientEmail;
 
+    @NotNull
+    private String payingUser;
+
+    @NotNull
+    private String paymentMethod;
+
 }

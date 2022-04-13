@@ -41,6 +41,6 @@ public class Package {
     @Column(name = "delivery_tax")
     private BigDecimal deliveryTax;
 
-    @OneToOne(mappedBy = "packageId")
+    @OneToOne(mappedBy = "packageInfo")
     private Transaction transaction;
 }

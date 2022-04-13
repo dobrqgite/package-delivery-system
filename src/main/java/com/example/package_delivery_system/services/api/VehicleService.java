@@ -1,4 +1,4 @@
-package com.example.package_delivery_system.services;
+package com.example.package_delivery_system.services.api;
 
 import java.io.IOException;
 
