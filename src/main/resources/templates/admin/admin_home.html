@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>admin_home</title>
+</head>
+
+<body>
+<div class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/admin/admin-index}">
+                <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
+        </div>
+        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal1" role="button">Add Employee</a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="driver-form" th:action="@{/admin/admin-home}" method="post">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" th:value="DRIVER" name="role" id="role1" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="role1">Driver</label>
+
+                                <input type="radio" class="btn-check" th:value="AGENT" name="role" id="role2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="role2">Agent</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="username" id="username"
+                                       class="form-control"
+                                       aria-describedby="firstnameHelp"
+                                       placeholder="Username...">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="firstName" id="firstName"
+                                               class="form-control"
+                                               aria-describedby="firstnameHelp"
+                                               placeholder="First Name...">
+                                        <label for="firstName">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="lastName" id="lastName"
+                                               class="form-control"
+                                               aria-describedby="lastnameHelp"
+                                               placeholder="Last Name...">
+                                        <label for="lastName">Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="phone" id="phone" class="form-control"
+                                               aria-describedby="phoneHelp"
+                                               placeholder="Phone...">
+                                        <label for="phone">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="UCN" id="UCN" class="form-control"
+                                               aria-describedby="ucnHelp"
+                                               placeholder="UCN...">
+                                        <label for="UCN">UCN</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" id="email" class="form-control"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Email..">
+                                <label for="email">Email address</label>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="country" id="country" class="form-control"
+                                               aria-describedby="countryHelp"
+                                               placeholder="Country..">
+                                        <label for="country">Country</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="city" id="city" class="form-control"
+                                               aria-describedby="cityHelp"
+                                               placeholder="City...">
+                                        <label for="city">City</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
+                                       placeholder="Full Address..">
+                                <label for="fullAddress">Full Address</label>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" name="password" id="password" class="form-control"
+                                               aria-describedby="passHelp"
+                                               placeholder="Password..">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" name="confirmPassword" id="confirmPassword"
+                                               class="form-control"
+                                               placeholder="Confirm Password...">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+<div class="main container">
+    <ul class="nav nav-pills mb-9" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-customer-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-customer" type="button" role="tab" aria-controls="pills-customer"
+                    aria-selected="true">Customers
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-agent-tab" data-bs-toggle="pill" data-bs-target="#pills-agent"
+                    type="button" role="tab" aria-controls="pills-agent" aria-selected="false">Agents
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-driver-tab" data-bs-toggle="pill" data-bs-target="#pills-driver"
+                    type="button" role="tab" aria-controls="pills-driver" aria-selected="false">Drivers
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-vehicle-tab" data-bs-toggle="pill" data-bs-target="#pills-vehicle"
+                    type="button" role="tab" aria-controls="pills-vehicle" aria-selected="false">Vehicles
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill" data-bs-target="#pills-packages"
+                    type="button" role="tab" aria-controls="pills-packages" aria-selected="false">Packages
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill" data-bs-target="#pills-admin"
+                    type="button" role="tab" aria-controls="pills-admin" aria-selected="false">Administrators
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-address-tab" data-bs-toggle="pill" data-bs-target="#pills-address"
+                    type="button" role="tab" aria-controls="pills-address" aria-selected="false">Addresses
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-pay-tab" data-bs-toggle="pill" data-bs-target="#pills-pay" type="button"
+                    role="tab" aria-controls="pills-pay" aria-selected="false">Transactions and Payments
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-request-tab" data-bs-toggle="pill" data-bs-target="#pills-request"
+                    type="button" role="tab" aria-controls="pills-request" aria-selected="false">Leave Requests
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-agent" role="tabpanel" aria-labelledby="pills-agent-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-driver" role="tabpanel" aria-labelledby="pills-driver-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-vehicle" role="tabpanel" aria-labelledby="pills-vehicle-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-package-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-pay" role="tabpanel" aria-labelledby="pills-pay-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-request" role="tabpanel" aria-labelledby="pills-request-tab">
+            <ul class="list-group">
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: pink;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="list-group-item" style="background-color: blanchedalmond;">
+                    <li class="row">
+                        <div class="col">
+                            <p style="margin-top: 10px;">package name #12341234</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

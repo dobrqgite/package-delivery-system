@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/templates.css}">
+
+    <title>Slowlee</title>
+
+</head>
+
+<header>
+    <div th:replace="fragments/header.html :: header"></div>
+</header>
+
+<body>
+    <div class="container-xl px-4 mt-4">
+        <!-- Account page navigation-->
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Edit Profile
+            </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link " id="address-tab" data-bs-toggle="tab" data-bs-target="#address" type="button" role="tab" aria-controls="address" aria-selected="false">Edit Address
+            </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="editProfileContent">
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+
+                    <div class="card mb-4">
+                        <div class="card-header">Account Details</div>
+                        <div class="card-body">
+                            <form th:action="@{/user/edit_profile}" th:method="put">
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUsername">Username</label>
+                                    <input class="form-control" id="inputUsername" name="username" type="text" placeholder="Enter your username">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputName">Full name</label>
+                                    <input class="form-control" id="inputUsername" name="fullName" type="text" placeholder="Enter your full name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                    <input class="form-control" id="inputEmailAddress" name="email" type="email" placeholder="Enter your email address">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputPhone">Phone number</label>
+                                    <input class="form-control" id="phoneNumber" name="phoneNumber" type="phone" placeholder="Enter your phone number">
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-outline-primary me-md-1" type="submit">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                <div class="col-xl-8">
+                    <!-- Adresses card-->
+
+                    <div class="card mb-4">
+                        <div class="card-header">Adresses</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush address-list">
+                                <li class="list-group-item list-group-item-primary">Sofia, Bulgaria, Mladost 2, floor 1, ap. 14
+                                </li>
+                                <li class="list-group-item bg-transparent">Plovdiv, Bulgaria, Karshaka, flor 5, ap 54</li>
+                                <li class="list-group-item bg-transparent">Kiev, Ukraine, bruh, floor -2</li>
+                                <li class="list-group-item bg-transparent">...some address...</li>
+                                <li class="list-group-item bg-transparent">...some address...</li>
+                            </ul>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="#exampleModal" class="btn btn-outline-primary me-md-1" style="margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Address</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputCountry">Country</label>
+                            <input class="form-control" id="inputCountry" type="country" placeholder="Country">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputCity">City</label>
+                            <input class="form-control" id="inputCity" type="text" placeholder="City" value="City">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputAddress">Personal address</label>
+                            <input class="form-control" id="inputAddress" type="address" placeholder="Street, number, building number, floor, apartment">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-primary" type="button">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div th:replace="fragments/footer.html :: footer"></div>
+    </footer>
+
+</body>
+
+
+</html>
