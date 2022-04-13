@@ -96,8 +96,7 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserResponseDto.class);
     }
 
-    //todo:add creation methods for driver and agent(ADMIN ONLY COMMANDS)
-
+    //TODO:implement method
     @Override
     public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {
         return null;

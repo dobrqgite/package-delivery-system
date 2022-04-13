@@ -156,6 +156,13 @@
                     </div>
                     <div class="modal-body">
                         <form id="agent-form" th:action="@{/admin/admin-home}" method="POST">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="agentUsername" id="agentUsername"
+                                       class="form-control"
+                                       aria-describedby="firstnameHelp"
+                                       placeholder="First Name...">
+                                <label for="agentFirstName">Agent First Name</label>
+                            </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
@@ -179,7 +186,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="phone" id="phone" class="form-control"
+                                        <input type="text" name="agentPhone" id="agentPhone" class="form-control"
                                                aria-describedby="phoneHelp"
                                                placeholder="Phone...">
                                         <label for="phone">Agent Phone</label>
@@ -187,7 +194,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="UCN" id="UCN" class="form-control"
+                                        <input type="text" name="agentUCN" id="agentUCN" class="form-control"
                                                aria-describedby="ucnHelp"
                                                placeholder="UCN...">
                                         <label for="UCN">Agent UCN</label>
@@ -195,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" id="email" class="form-control"
+                                <input type="email" name="agentEmail" id="agentEmail" class="form-control"
                                        aria-describedby="emailHelp"
                                        placeholder="Email..">
                                 <label for="email">Agent Email address</label>
@@ -203,7 +210,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="country" id="country" class="form-control"
+                                        <input type="text" name="agentCountry" id="agentCountry" class="form-control"
                                                aria-describedby="countryHelp"
                                                placeholder="Country..">
                                         <label for="country">Agent Country</label>
@@ -211,7 +218,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="city" id="city" class="form-control"
+                                        <input type="text" name="agentCity" id="agentCity" class="form-control"
                                                aria-describedby="cityHelp"
                                                placeholder="City...">
                                         <label for="city">Agent City</label>
@@ -219,14 +226,14 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
+                                <input type="text" name="agentFullAddress" id="agentFullAddress" class="form-control"
                                        placeholder="Full Address..">
                                 <label for="fullAddress">Agent Full Address</label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="password" id="password" class="form-control"
+                                        <input type="password" name="agentPassword" id="agentPassword" class="form-control"
                                                aria-describedby="passHelp"
                                                placeholder="Password..">
                                         <label for="password">Agent Password</label>
@@ -234,7 +241,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="confirmPassword" id="confirmPassword"
+                                        <input type="password" name="agentConfirmPassword" id="agentConfirmPassword"
                                                class="form-control"
                                                placeholder="Confirm Password...">
                                         <label for="confirmPassword">Agent Confirm Password</label>

@@ -2,6 +2,8 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.employeeDtos.DriverRegisterDto;
 import com.example.package_delivery_system.data.dtos.employeeDtos.DriverResponseDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.agentDtos.AgentRegisterDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.agentDtos.AgentResponseDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
@@ -62,4 +64,32 @@ public class AdminServiceImpl implements AdminService {
 
         return this.modelMapper.map(driver, DriverResponseDto.class);
     }
+
+    @Override
+    public AgentResponseDto registerAgent(AgentRegisterDto agentDto) {
+
+        String fullName = agentDto.getAgentFirstName() + " " + agentDto.getAgentLastName();
+
+        if (this.userRepository.existsByUsernameOrEmail(agentDto.getAgentUsername(), agentDto.getAgentEmail())){
+            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, agentDto.getAgentUsername()));
+        }
+
+        if (!agentDto.getAgentPassword().equals(agentDto.getAgentConfirmPassword())){
+            throw new BadRequestException(PASSWORDS_DO_NOT_MATCH);
+        }
+
+        if (this.userRepository.existsByPhone(agentDto.getAgentPhone())) {
+            throw new BadRequestException(PHONE_ALREADY_EXISTS);
+        }
+        Address agentAddress = this.addressService.createUserAddress(agentDto);
+
+        UserEntity agent = this.modelMapper.map(agentDto, UserEntity.class);
+        agent.setAddress(agentAddress);
+        agent.setFullName(fullName);
+        agent.setRoles(Set.of(this.roleRepository.getRoleByAuthority("AGENT").get()));
+        this.userRepository.save(agent);
+
+        return this.modelMapper.map(agent, AgentResponseDto.class);
+    }
+
 }
