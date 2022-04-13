@@ -39,9 +39,9 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address createUserAddress(DriverRegisterDto driverAddressFromRegisterDto) {
-        String country = driverAddressFromRegisterDto.getCountry();
-        String city = driverAddressFromRegisterDto.getCity();
-        String fullAddress = driverAddressFromRegisterDto.getFullAddress();
+        String country = driverAddressFromRegisterDto.getDriverCountry();
+        String city = driverAddressFromRegisterDto.getDriverCity();
+        String fullAddress = driverAddressFromRegisterDto.getDriverFullAddress();
 
         Address address = this.modelMapper.map(driverAddressFromRegisterDto, Address.class);
 

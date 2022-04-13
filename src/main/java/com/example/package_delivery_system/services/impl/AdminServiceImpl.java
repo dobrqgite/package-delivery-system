@@ -39,17 +39,17 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public DriverResponseDto registerDriver(DriverRegisterDto driverDto) {
 
-        String fullName = driverDto.getFirstName() + " " + driverDto.getLastName();
+        String fullName = driverDto.getDriverFirstName() + " " + driverDto.getDriverLastName();
 
-        if (this.userRepository.existsByUsernameOrEmail(driverDto.getUsername(), driverDto.getEmail())){
-            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, driverDto.getUsername()));
+        if (this.userRepository.existsByUsernameOrEmail(driverDto.getDriverUsername(), driverDto.getDriverEmail())){
+            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, driverDto.getDriverUsername()));
         }
 
-        if (!driverDto.getPassword().equals(driverDto.getConfirmPassword())){
+        if (!driverDto.getDriverPassword().equals(driverDto.getDriverConfirmPassword())){
             throw new BadRequestException(PASSWORDS_DO_NOT_MATCH);
         }
 
-        if (this.userRepository.existsByPhone(driverDto.getPhone())) {
+        if (this.userRepository.existsByPhone(driverDto.getDriverPhone())) {
             throw new BadRequestException(PHONE_ALREADY_EXISTS);
         }
         Address driverAddress = this.addressService.createUserAddress(driverDto);

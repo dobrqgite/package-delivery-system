@@ -14,38 +14,38 @@ import javax.validation.constraints.NotNull;
 public class DriverRegisterDto {
 
     @NotNull
-    private String username;
+    private String driverUsername;
 
     @NotNull
-    private String firstName;
+    private String driverFirstName;
 
     @NotNull
-    private String lastName;
+    private String driverLastName;
 
     @NotNull
-    private String phone;
+    private String driverPhone;
 
     @NotNull
-    private String UCN;
+    private String driverUCN;
 
     @NotNull
-    private String country;
+    private String driverCountry;
 
     @NotNull
-    private String city;
+    private String driverCity;
 
     @NotNull
-    private String fullAddress;
+    private String driverFullAddress;
 
     @Email
     @NotNull
-    private String email;
+    private String driverEmail;
 
     @NotNull
-    private String password;
+    private String driverPassword;
 
     @NotNull
-    private String confirmPassword;
+    private String driverConfirmPassword;
 
     private VehicleDto vehicleInUse;
 }

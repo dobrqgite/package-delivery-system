@@ -39,7 +39,13 @@
                     </div>
                     <div class="modal-body">
                         <form id="driver-form" th:action="@{/admin/admin-home}" method="POST">
-
+                            <div class="form-floating mb-3">
+                                <input type="text" name="driverUsername" id="driverUsername"
+                                       class="form-control"
+                                       aria-describedby="firstnameHelp"
+                                       placeholder="Username...">
+                                <label for="driverUsername">Driver Username</label>
+                            </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
@@ -63,7 +69,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="phone" id="phone" class="form-control"
+                                        <input type="text" name="driverPhone" id="driverPhone" class="form-control"
                                                aria-describedby="phoneHelp"
                                                placeholder="Phone...">
                                         <label for="phone">Driver Phone</label>
@@ -71,7 +77,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="UCN" id="UCN" class="form-control"
+                                        <input type="text" name="driverUCN" id="driverUCN" class="form-control"
                                                aria-describedby="ucnHelp"
                                                placeholder="UCN...">
                                         <label for="UCN">Driver UCN</label>
@@ -79,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" id="email" class="form-control"
+                                <input type="email" name="driverEmail" id="driverEmail" class="form-control"
                                        aria-describedby="emailHelp"
                                        placeholder="Email..">
                                 <label for="email">Driver Email address</label>
@@ -87,7 +93,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="country" id="country" class="form-control"
+                                        <input type="text" name="driverCountry" id="driverCountry" class="form-control"
                                                aria-describedby="countryHelp"
                                                placeholder="Country..">
                                         <label for="country">Driver Country</label>
@@ -95,7 +101,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="city" id="city" class="form-control"
+                                        <input type="text" name="driverCity" id="driverCity" class="form-control"
                                                aria-describedby="cityHelp"
                                                placeholder="City...">
                                         <label for="city">Driver City</label>
@@ -103,14 +109,14 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
+                                <input type="text" name="driverFullAddress" id="driverFullAddress" class="form-control"
                                        placeholder="Full Address..">
                                 <label for="fullAddress">Driver Full Address</label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="password" id="password" class="form-control"
+                                        <input type="password" name="driverPassword" id="driverPassword" class="form-control"
                                                aria-describedby="passHelp"
                                                placeholder="Password..">
                                         <label for="password">Driver Password</label>
@@ -118,7 +124,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="confirmPassword" id="confirmPassword"
+                                        <input type="password" name="driverConfirmPassword" id="driverConfirmPassword"
                                                class="form-control"
                                                placeholder="Confirm Password...">
                                         <label for="confirmPassword">Driver Confirm Password</label>
