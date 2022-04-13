@@ -1,9 +1,7 @@
 package com.example.package_delivery_system.services.impl;
 
-import com.example.package_delivery_system.data.dtos.employeeDtos.DriverRegisterDto;
-import com.example.package_delivery_system.data.dtos.employeeDtos.DriverResponseDto;
-import com.example.package_delivery_system.data.dtos.employeeDtos.agentDtos.AgentRegisterDto;
-import com.example.package_delivery_system.data.dtos.employeeDtos.agentDtos.AgentResponseDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeResponseDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
@@ -39,57 +37,33 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public DriverResponseDto registerDriver(DriverRegisterDto driverDto) {
+    public EmployeeResponseDto registerEmployee(EmployeeRegisterDto employeeRegisterDto) {
 
-        String fullName = driverDto.getDriverFirstName() + " " + driverDto.getDriverLastName();
+        String fullName = employeeRegisterDto.getFirstName() + " " + employeeRegisterDto.getLastName();
 
-        if (this.userRepository.existsByUsernameOrEmail(driverDto.getDriverUsername(), driverDto.getDriverEmail())){
-            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, driverDto.getDriverUsername()));
+        if (this.userRepository.existsByUsernameOrEmail(employeeRegisterDto.getUsername(), employeeRegisterDto.getEmail())){
+            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, employeeRegisterDto.getUsername()));
         }
 
-        if (!driverDto.getDriverPassword().equals(driverDto.getDriverConfirmPassword())){
+        if (!employeeRegisterDto.getPassword().equals(employeeRegisterDto.getConfirmPassword())){
             throw new BadRequestException(PASSWORDS_DO_NOT_MATCH);
         }
 
-        if (this.userRepository.existsByPhone(driverDto.getDriverPhone())) {
+        if (this.userRepository.existsByPhone(employeeRegisterDto.getPhone())) {
             throw new BadRequestException(PHONE_ALREADY_EXISTS);
         }
-        Address driverAddress = this.addressService.createUserAddress(driverDto);
+        Address agentAddress = this.addressService.createUserAddress(employeeRegisterDto);
 
-        UserEntity driver = this.modelMapper.map(driverDto, UserEntity.class);
-        driver.setAddress(driverAddress);
-        driver.setFullName(fullName);
-        driver.setRoles(Set.of(this.roleRepository.getRoleByAuthority("DRIVER").get()));
-        this.userRepository.save(driver);
+        UserEntity employee = this.modelMapper.map(employeeRegisterDto, UserEntity.class);
+        employee.setAddress(agentAddress);
+        employee.setFullName(fullName);
+        if (employeeRegisterDto.getRole().equals("AGENT")) {
+            employee.setRoles(Set.of(this.roleRepository.getRoleByAuthority("AGENT").get()));
+        }else{
+            employee.setRoles(Set.of(this.roleRepository.getRoleByAuthority("DRIVER").get()));
+        }
+        this.userRepository.save(employee);
 
-        return this.modelMapper.map(driver, DriverResponseDto.class);
+        return this.modelMapper.map(employee, EmployeeResponseDto.class);
     }
-
-    @Override
-    public AgentResponseDto registerAgent(AgentRegisterDto agentDto) {
-
-        String fullName = agentDto.getAgentFirstName() + " " + agentDto.getAgentLastName();
-
-        if (this.userRepository.existsByUsernameOrEmail(agentDto.getAgentUsername(), agentDto.getAgentEmail())){
-            throw new BadRequestException(String.format(DRIVER_ALREADY_EXISTS, agentDto.getAgentUsername()));
-        }
-
-        if (!agentDto.getAgentPassword().equals(agentDto.getAgentConfirmPassword())){
-            throw new BadRequestException(PASSWORDS_DO_NOT_MATCH);
-        }
-
-        if (this.userRepository.existsByPhone(agentDto.getAgentPhone())) {
-            throw new BadRequestException(PHONE_ALREADY_EXISTS);
-        }
-        Address agentAddress = this.addressService.createUserAddress(agentDto);
-
-        UserEntity agent = this.modelMapper.map(agentDto, UserEntity.class);
-        agent.setAddress(agentAddress);
-        agent.setFullName(fullName);
-        agent.setRoles(Set.of(this.roleRepository.getRoleByAuthority("AGENT").get()));
-        this.userRepository.save(agent);
-
-        return this.modelMapper.map(agent, AgentResponseDto.class);
-    }
-
 }

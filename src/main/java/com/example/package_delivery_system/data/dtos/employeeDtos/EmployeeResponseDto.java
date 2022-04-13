@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DriverResponseDto {
+public class EmployeeResponseDto {
     private Long id;
 
     private String username;
@@ -19,4 +19,5 @@ public class DriverResponseDto {
     private String UCN;
 
     private String email;
+
 }

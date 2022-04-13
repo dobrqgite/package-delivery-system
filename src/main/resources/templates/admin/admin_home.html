@@ -29,222 +29,105 @@
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="btn-nav d-flex justify-content-center mb-3 gap-2">
-                        <button id="choose-driver" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                class="btn btn-outline-secondary w-50 active " type="button">Driver
-                        </button>
-                        <button id="choose-agent" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                                class="btn btn-outline-secondary w-50" type="button">Agent
-                        </button>
-                    </div>
+
                     <div class="modal-body">
-                        <form id="driver-form" th:action="@{/admin/admin-home}" method="POST">
+                        <form id="driver-form" th:action="@{/admin/admin-home}" method="post">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" th:value="DRIVER" name="role" id="role1" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="role1">Driver</label>
+
+                                <input type="radio" class="btn-check" th:value="AGENT" name="role" id="role2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="role2">Agent</label>
+                            </div>
                             <div class="form-floating mb-3">
-                                <input type="text" name="driverUsername" id="driverUsername"
+                                <input type="text" name="username" id="username"
                                        class="form-control"
                                        aria-describedby="firstnameHelp"
                                        placeholder="Username...">
-                                <label for="driverUsername">Driver Username</label>
+                                <label for="username">Username</label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverFirstName" id="driverFirstName"
+                                        <input type="text" name="firstName" id="firstName"
                                                class="form-control"
                                                aria-describedby="firstnameHelp"
                                                placeholder="First Name...">
-                                        <label for="driverFirstName">Driver First Name</label>
+                                        <label for="firstName">Driver First Name</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverLastName" id="driverLastName"
+                                        <input type="text" name="lastName" id="lastName"
                                                class="form-control"
                                                aria-describedby="lastnameHelp"
                                                placeholder="Last Name...">
-                                        <label for="driverLastName">Driver Last Name</label>
+                                        <label for="lastName">Last Name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverPhone" id="driverPhone" class="form-control"
+                                        <input type="text" name="phone" id="phone" class="form-control"
                                                aria-describedby="phoneHelp"
                                                placeholder="Phone...">
-                                        <label for="driverPhone">Driver Phone</label>
+                                        <label for="phone">Phone</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverUCN" id="driverUCN" class="form-control"
+                                        <input type="text" name="UCN" id="UCN" class="form-control"
                                                aria-describedby="ucnHelp"
                                                placeholder="UCN...">
-                                        <label for="driverUCN">Driver UCN</label>
+                                        <label for="UCN">UCN</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" name="driverEmail" id="driverEmail" class="form-control"
+                                <input type="email" name="email" id="email" class="form-control"
                                        aria-describedby="emailHelp"
                                        placeholder="Email..">
-                                <label for="driverEmail">Driver Email address</label>
+                                <label for="email">Email address</label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverCountry" id="driverCountry" class="form-control"
+                                        <input type="text" name="country" id="country" class="form-control"
                                                aria-describedby="countryHelp"
                                                placeholder="Country..">
-                                        <label for="driverCountry">Driver Country</label>
+                                        <label for="country">Country</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="driverCity" id="driverCity" class="form-control"
+                                        <input type="text" name="city" id="city" class="form-control"
                                                aria-describedby="cityHelp"
                                                placeholder="City...">
-                                        <label for="driverCity">Driver City</label>
+                                        <label for="city">City</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" name="driverFullAddress" id="driverFullAddress" class="form-control"
+                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
                                        placeholder="Full Address..">
-                                <label for="driverFullAddress">Driver Full Address</label>
+                                <label for="fullAddress">Full Address</label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="driverPassword" id="driverPassword" class="form-control"
+                                        <input type="password" name="password" id="password" class="form-control"
                                                aria-describedby="passHelp"
                                                placeholder="Password..">
-                                        <label for="driverPassword">Driver Password</label>
+                                        <label for="password">Password</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="driverConfirmPassword" id="driverConfirmPassword"
+                                        <input type="password" name="confirmPassword" id="confirmPassword"
                                                class="form-control"
                                                placeholder="Confirm Password...">
-                                        <label for="driverConfirmPassword">Driver Confirm Password</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="btn-nav d-flex justify-content-center mb-3 gap-2">
-                        <button id="choose-driver1" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                class="btn btn-outline-secondary w-50">Driver
-                        </button>
-                        <button id="choose-agent1" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                                class="btn btn-outline-secondary active w-50">Agent
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="agent-form" th:action="@{/admin/admin-home}" method="POST">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="agentUsername" id="agentUsername"
-                                       class="form-control"
-                                       aria-describedby="firstnameHelp"
-                                       placeholder="First Name...">
-                                <label for="agentFirstName">Agent First Name</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentFirstName" id="agentFirstName"
-                                               class="form-control"
-                                               aria-describedby="firstnameHelp"
-                                               placeholder="First Name...">
-                                        <label for="agentFirstName">Agent First Name</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentLastName" id="agentLastName"
-                                               class="form-control"
-                                               aria-describedby="lastnameHelp"
-                                               placeholder="Last Name...">
-                                        <label for="agentLastName">Agent Last name</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentPhone" id="agentPhone" class="form-control"
-                                               aria-describedby="phoneHelp"
-                                               placeholder="Phone...">
-                                        <label for="agentPhone">Agent Phone</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentUCN" id="agentUCN" class="form-control"
-                                               aria-describedby="ucnHelp"
-                                               placeholder="UCN...">
-                                        <label for="agentUCN">Agent UCN</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" name="agentEmail" id="agentEmail" class="form-control"
-                                       aria-describedby="emailHelp"
-                                       placeholder="Email..">
-                                <label for="agentEmail">Agent Email address</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentCountry" id="agentCountry" class="form-control"
-                                               aria-describedby="countryHelp"
-                                               placeholder="Country..">
-                                        <label for="agentCountry">Agent Country</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="agentCity" id="agentCity" class="form-control"
-                                               aria-describedby="cityHelp"
-                                               placeholder="City...">
-                                        <label for="agentCity">Agent City</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" name="agentFullAddress" id="agentFullAddress" class="form-control"
-                                       placeholder="Full Address..">
-                                <label for="agentFullAddress">Agent Full Address</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" name="agentPassword" id="agentPassword" class="form-control"
-                                               aria-describedby="passHelp"
-                                               placeholder="Password..">
-                                        <label for="agentPassword">Agent Password</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" name="agentConfirmPassword" id="agentConfirmPassword"
-                                               class="form-control"
-                                               placeholder="Confirm Password...">
-                                        <label for="agentConfirmPassword">Agent Confirm Password</label>
+                                        <label for="confirmPassword">Confirm Password</label>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +138,6 @@
             </div>
         </div>
     </nav>
-
 
 </div>
 
