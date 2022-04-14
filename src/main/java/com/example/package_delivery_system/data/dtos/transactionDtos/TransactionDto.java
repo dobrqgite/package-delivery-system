@@ -15,12 +15,14 @@ public class TransactionDto {
 
     private Long id;
 
-    private UserEntity payerId;
+    private UserEntity payingUser;
 
     private String paymentMethod;
 
     private BigDecimal amount;
 
     private Package packageId;
+
+    private boolean isPaid;
 
 }

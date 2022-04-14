@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -31,4 +31,7 @@ public class Transaction {
     @OneToOne
     @JoinColumn(name = "package_info")
     private Package packageInfo;
+
+    @Column(name = "is_paid")
+    private boolean isPaid;
 }
