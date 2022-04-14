@@ -43,7 +43,7 @@ public class PackageServiceImpl implements PackageService {
         BigDecimal length = createPackageDto.getLength();
         BigDecimal price = createPackageDto.getPrice();
         UserEntity sender = (UserEntity) userService.loadUserByUsername(currentlyLoggedInUserEmail);
-        UserEntity receiver = (UserEntity) userService.loadUserByUsername(createPackageDto.getRecipientEmail());
+        UserEntity recepient = (UserEntity) userService.loadUserByUsername(createPackageDto.getRecipientEmail());
 
         String paymentMethod = createPackageDto.getPaymentMethod();
 
@@ -51,24 +51,24 @@ public class PackageServiceImpl implements PackageService {
 
         packageToAdd.setContent(content);
         packageToAdd.setSender(sender);
-        packageToAdd.setReceiver(receiver);
+        packageToAdd.setReceiver(recepient);
         packageToAdd.setWeight(weight);
         packageToAdd.setPrice(price);
         packageToAdd.setDelivered(false);
         packageToAdd.setDeliveryTax(calculateTax(weight, height, length, width));
         packageToAdd.setPaymentMethod(paymentMethod == null ? "Cash on delivery" : createPackageDto.getPaymentMethod());
         Transaction transaction = createTransaction(packageToAdd, paymentMethod);
-        if (createPackageDto.getPayingUser().equals("Sender")){
+        if (createPackageDto.getPayingUser().equals("Sender")) {
             transaction.setPayingUser(sender);
             packageToAdd.setPayingUser(sender);
-        }else if (createPackageDto.getPayingUser().equals("Recipient")){
-            transaction.setPayingUser(receiver);
-            packageToAdd.setPayingUser(receiver);
+        } else if (createPackageDto.getPayingUser().equals("Recipient")) {
+            transaction.setPayingUser(recepient);
+            packageToAdd.setPayingUser(recepient);
         }
-        if (Objects.equals(createPackageDto.getPayingUser(), "Recipient")){
+        if (Objects.equals(createPackageDto.getPayingUser(), "Recipient")) {
             transaction.setPaymentMethod("Cash on delivery");
-        }else if (Objects.equals(createPackageDto.getPayingUser(),"sender")){
-            switch(transaction.getPaymentMethod()){
+        } else if (Objects.equals(createPackageDto.getPayingUser(), "Sender")) {
+            switch (transaction.getPaymentMethod()) {
                 case "Visa":
                     transaction.setPaid(true);
                     break;
@@ -90,11 +90,7 @@ public class PackageServiceImpl implements PackageService {
         this.packageRepository.save(packageToAdd);
         this.transactionRepository.save(transaction);
 
-       return this.modelMapper.map(packageToAdd, PackageResponseDto.class);
-    }
-
-    private void handlePaymentOptions(CreatePackageDto createPackageDto, UserEntity sender, UserEntity receiver, String payingUser, Transaction transaction) {
-
+        return this.modelMapper.map(packageToAdd, PackageResponseDto.class);
     }
 
     private BigDecimal calculateTax(BigDecimal weight, BigDecimal height, BigDecimal length, BigDecimal width) {
@@ -140,7 +136,7 @@ public class PackageServiceImpl implements PackageService {
         return 2.1;
     }
 
-    private Transaction createTransaction(Package packageToAdd,String paymentMethod){
+    private Transaction createTransaction(Package packageToAdd, String paymentMethod) {
         BigDecimal dueAmount = packageToAdd.getPrice().add(packageToAdd.getDeliveryTax());
 
         Transaction transaction = new Transaction();

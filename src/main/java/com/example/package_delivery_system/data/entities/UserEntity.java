@@ -7,6 +7,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -23,21 +27,34 @@ public class UserEntity implements UserDetails {
     private Long id;
 
     @Column(name = "username")
+//    @NotEmpty
     private String username;
 
     @Column(name = "full_name")
+//    @NotEmpty
+//    @Pattern(regexp="^[a-zA-Z]",message="Your name should only contain letters.")
     private String fullName;
 
     @Column(name = "phone_number")
+//    @Pattern(regexp="^[0-9]",message="Your phone number can only contain numbers and should be at least 8 characters long.")
+//    @Size(min = 8)
     private String phone;
 
     @Column(name = "UCN")
+//    @NotEmpty
+//    @Pattern(regexp= "^[0-9]", message = "Your UCN should be exactly 10 characters long and should only contain numbers.")
     private String UCN;
 
     @Column(name = "email", nullable = false)
+//    @NotEmpty
+//    @Email
     private String email;
 
+
+    //TODO: Change min password chars to 6. Only 3 for testing purposes!
     @Column(name = "password", nullable = false)
+//    @NotEmpty
+//    @Size(min = 3, message = "Your password should be at least 3 characters long.")
     private String password;
 
     @OneToOne
