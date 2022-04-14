@@ -1,9 +1,10 @@
 package com.example.package_delivery_system.services.api;
 
-import com.example.package_delivery_system.data.dtos.employeeDtos.CreateDriverDto;
-import com.example.package_delivery_system.data.dtos.employeeDtos.DriverResponseDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
+import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeResponseDto;
 
 public interface AdminService {
-     DriverResponseDto registerDriver(CreateDriverDto driverDto);
+
+     EmployeeResponseDto registerEmployee(EmployeeRegisterDto employeeDto);
 
 }

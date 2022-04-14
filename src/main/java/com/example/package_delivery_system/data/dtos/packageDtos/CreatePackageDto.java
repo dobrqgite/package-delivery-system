@@ -1,5 +1,6 @@
 package com.example.package_delivery_system.data.dtos.packageDtos;
 
+import com.example.package_delivery_system.data.entities.Transaction;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

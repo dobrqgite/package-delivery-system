@@ -63,6 +63,24 @@ public class UserEntity implements UserDetails {
     @OneToMany(mappedBy = "sender")
     private List<Package> packagesToSend;
 
+    public UserEntity(Long id, String username, String fullName,
+                      String phone, String UCN, String email,
+                      String password, Address address, Set<Role> roles,
+                      Set<Vehicle> vehicles, List<Package> packagesToReceive,
+                      List<Package> packagesToSend) {
+        this.id = id;
+        this.username = username;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.UCN = UCN;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.roles = roles;
+        this.vehicles = vehicles;
+        this.packagesToReceive = packagesToReceive;
+        this.packagesToSend = packagesToSend;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

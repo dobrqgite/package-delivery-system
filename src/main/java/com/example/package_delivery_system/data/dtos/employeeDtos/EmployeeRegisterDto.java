@@ -1,4 +1,4 @@
-package com.example.package_delivery_system.data.dtos.userDtos;
+package com.example.package_delivery_system.data.dtos.employeeDtos;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserRegisterDto {
+public class EmployeeRegisterDto {
 
     @NotNull
     private String username;
@@ -45,4 +45,7 @@ public class UserRegisterDto {
 
     @NotNull
     private String confirmPassword;
+
+    @NotNull
+    private String role;
 }
