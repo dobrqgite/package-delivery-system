@@ -1,15 +1,18 @@
-package com.example.package_delivery_system.data.dtos.userDtos;
+package com.example.package_delivery_system.data.dtos.employeeDtos;
 
+import com.example.package_delivery_system.data.dtos.vehicleDtos.VehicleDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserRegisterDto {
+public class CreateDriverDto {
+    //todo:add fields
 
     @NotNull
     private String username;
@@ -35,6 +38,7 @@ public class UserRegisterDto {
     @NotNull
     private String fullAddress;
 
+    @Email
     @NotNull
     private String email;
 
@@ -43,4 +47,6 @@ public class UserRegisterDto {
 
     @NotNull
     private String confirmPassword;
+
+    private VehicleDto vehicleInUse;
 }

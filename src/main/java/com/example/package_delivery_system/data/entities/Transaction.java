@@ -15,12 +15,12 @@ import java.math.BigDecimal;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "payer_id", nullable = false)
-    private UserEntity payerId;
+    @JoinColumn(name = "paying_user", nullable = false)
+    private UserEntity payingUser;
 
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;
@@ -29,6 +29,9 @@ public class Transaction {
     private BigDecimal amount;
 
     @OneToOne
-    @JoinColumn(name = "package_id")
-    private Package packageId;
+    @JoinColumn(name = "package_info")
+    private Package packageInfo;
+
+    @Column(name = "is_paid")
+    private boolean isPaid;
 }

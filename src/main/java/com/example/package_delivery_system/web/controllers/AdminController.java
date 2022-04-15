@@ -1,7 +1,7 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
-import com.example.package_delivery_system.services.AdminService;
+import com.example.package_delivery_system.services.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,4 +37,3 @@ public class AdminController {
     }
 
 }
-

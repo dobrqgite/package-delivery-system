@@ -3,7 +3,7 @@ package com.example.package_delivery_system.common;
 import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
-import com.example.package_delivery_system.services.AddressService;
+import com.example.package_delivery_system.services.api.AddressService;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

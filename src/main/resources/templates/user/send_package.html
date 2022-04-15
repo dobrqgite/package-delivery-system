@@ -19,56 +19,96 @@
 </header>
 
 <body>
-    <div class="container-xl px-4 mt-4">
-        <div class="col-xl-8">
-            <div class="card mb-4">
-                <div class="card-header">Send package</div>
-                <div class="card-body">
-                    <form th:action="@{/user/send-package}" th:method="post">
-                        <div class="row">
-                            <div class="col">
-                                <label class="small mb-1" for="recipientEmail">Recipient email</label>
-                                <input class="form-control" id="recipientEmail" name="recipientEmail" type="email" placeholder="example@email.com">
-                            </div>
-                            <div class="col-3">
-                                <label class="small mb-1" for="price">Price</label>
-                                <input class="form-control" id="price" name="price" type="number" placeholder="price in levs">
-                            </div>
+<div class="container-xl px-4 mt-4">
+    <div class="col-xl-8">
+        <div class="card mb-4">
+            <div class="card-header">Package details</div>
+            <div class="card-body">
+                <form th:action="@{/user/send-package}" th:method="post">
+                    <div class="row">
+                        <div class="col">
+                            <label class="small mb-1" for="recipientEmail">Recipient email</label>
+                            <input class="form-control" id="recipientEmail" name="recipientEmail" type="email" placeholder="example@email.com">
                         </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="weight">Weight</label>
-                            <input class="form-control" id="weight" name="weight" type="number" placeholder="Enter package weight in kg">
+                        <div class="col-3">
+                            <label class="small mb-1" for="price">Price</label>
+                            <input class="form-control" id="price" name="price" type="number" placeholder="price in levs">
                         </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="height">Height</label>
-                            <input class="form-control" id="height" name="height" type="number" placeholder="Enter package height in cm">
-                        </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="width">Width</label>
-                            <input class="form-control" id="width" name="width" type="number" placeholder="Enter package width in cm">
-                        </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="length">Lenght</label>
-                            <input class="form-control" id="length" name="length" type="number" placeholder="Enter package length in cm">
-                        </div>
-                        <div class="mb-3">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1" for="weight">Weight</label>
+                        <input class="form-control" id="weight" name="weight" type="number" placeholder="Enter package weight in kg">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1" for="height">Height</label>
+                        <input class="form-control" id="height" name="height" type="number" placeholder="Enter package height in cm">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1" for="width">Width</label>
+                        <input class="form-control" id="width" name="width" type="number" placeholder="Enter package width in cm">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1" for="length">Length</label>
+                        <input class="form-control" id="length" name="length" type="number" placeholder="Enter package length in cm">
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             <label class="small mb-1" for="description">Description</label>
                             <input class="form-control" id="description" name="description" type="text" placeholder="Short description of the package">
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-outline-primary me-md-1" type="submit">Send</button>
+                        <div class="col-3">
+                            <label class="small mb-1" for="payer">Shipping payer</label>
+                            <select class="form-control" name="payingUser" id="payer" required>
+                                <option value="" selected disabled>Please select below</option>
+                                <option value="Sender">Sender</option>
+                                <option value="Recipient">Recipient</option>
+                            </select>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-3 hide" id="payment">
+                        <label class="small mb-1" for="payment">Payment method</label>
+                        <select class="form-control" name="paymentMethod"  required>
+                            <option value="Cash on delivery" selected disabled>Please select below</option>
+                            <option value="Visa">Visa</option>
+                            <option value="Mastercard">Mastercard</option>
+                            <option value="PayPal">PayPal</option>
+                            <option value="Cash on pickup">Cash on pickup</option>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-primary me-md-1" type="submit">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <footer>
-        <div th:replace="fragments/footer.html :: footer"></div>
-    </footer>
+<footer>
+    <div th:replace="fragments/footer.html :: footer"></div>
+</footer>
 
 
 </body>
+
+<script>
+    var source = document.querySelector("#payer");
+    var displayValue = "Sender";
+    var target = document.querySelector("#payment");
+
+    function displayWhenSelected(source, displayValue, target) {
+        var selectedIndex = source.selectedIndex;
+        if (source[selectedIndex].value === displayValue) {
+            target.classList.remove("hide");
+            target.classList.add("show");
+        } else {
+            target.classList.remove("show");
+            target.classList.add("hide")
+        }
+    }
+    source.addEventListener("change", function() {
+        displayWhenSelected(source, displayValue, target)
+    }, false);
+</script>
 
 </html>

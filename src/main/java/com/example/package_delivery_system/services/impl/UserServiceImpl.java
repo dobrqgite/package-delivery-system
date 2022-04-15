@@ -10,8 +10,8 @@ import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.exceptions.BadRequestException;
-import com.example.package_delivery_system.services.AddressService;
-import com.example.package_delivery_system.services.UserService;
+import com.example.package_delivery_system.services.api.AddressService;
+import com.example.package_delivery_system.services.api.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
         }
         Address userAddress = this.addressService.createUserAddress(userRegisterDto);
 
+
         UserEntity user = new UserEntity();
         user.setFullName(fullName);
         user.setUsername(username);
@@ -95,7 +96,8 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserResponseDto.class);
     }
 
-    //TODO:implement method
+    //todo:add creation methods for driver and agent(ADMIN ONLY COMMANDS)
+
     @Override
     public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {
         return null;

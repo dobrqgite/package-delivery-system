@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class Package {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -41,6 +41,13 @@ public class Package {
     @Column(name = "delivery_tax")
     private BigDecimal deliveryTax;
 
-    @OneToOne(mappedBy = "packageId")
+    @OneToOne(mappedBy = "packageInfo")
     private Transaction transaction;
+
+    @ManyToOne
+    @JoinColumn (name = "payer_id")
+    private UserEntity payingUser;
+
+    @Column(name = "payment_method")
+    private String paymentMethod;
 }

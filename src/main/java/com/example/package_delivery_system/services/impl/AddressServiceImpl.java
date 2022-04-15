@@ -4,7 +4,7 @@ import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegist
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.repositories.AddressRepository;
-import com.example.package_delivery_system.services.AddressService;
+import com.example.package_delivery_system.services.api.AddressService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,28 +24,30 @@ public class AddressServiceImpl implements AddressService {
     }
 
 
-   @Override
-   @Transactional
-   public Address createUserAddress(UserRegisterDto userAddressFromRegisterDto) {
+    @Override
+    @Transactional
+    public Address createUserAddress(UserRegisterDto userAddressFromRegisterDto) {
 
-       String country = userAddressFromRegisterDto.getCountry();
-       String city = userAddressFromRegisterDto.getCity();
-       String fullAddress = userAddressFromRegisterDto.getFullAddress();
+        String country = userAddressFromRegisterDto.getCountry();
+        String city = userAddressFromRegisterDto.getCity();
+        String fullAddress = userAddressFromRegisterDto.getFullAddress();
 
-       Address address = this.modelMapper.map(userAddressFromRegisterDto, Address.class);
+        Address address = this.modelMapper.map(userAddressFromRegisterDto, Address.class);
 
-       return this.addressRepository.save(address);
-   }
+        return this.addressRepository.save(address);
+    }
 
     @Override
-    public Address createUserAddress(EmployeeRegisterDto employeeAddressFromRegisterDto) {
+    @Transactional
+    public Address createEmployeeAddress(EmployeeRegisterDto employeeAddressFromRegisterDto) {
+
         String country = employeeAddressFromRegisterDto.getCountry();
-       String city = employeeAddressFromRegisterDto.getCity();
-       String fullAddress = employeeAddressFromRegisterDto.getFullAddress();
+        String city = employeeAddressFromRegisterDto.getCity();
+        String fullAddress = employeeAddressFromRegisterDto.getFullAddress();
 
-       Address address = this.modelMapper.map(employeeAddressFromRegisterDto, Address.class);
+        Address address = this.modelMapper.map(employeeAddressFromRegisterDto, Address.class);
 
-       return this.addressRepository.save(address);
+        return this.addressRepository.save(address);
     }
 
     Address findById(Long id){
