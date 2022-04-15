@@ -1,7 +1,5 @@
 package com.example.package_delivery_system.data.dtos.packageDtos;
 
-import com.example.package_delivery_system.data.entities.Transaction;
-import com.example.package_delivery_system.data.entities.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,5 +37,4 @@ public class CreatePackageDto {
 
     @NotNull
     private String paymentMethod;
-
 }

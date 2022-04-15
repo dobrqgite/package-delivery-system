@@ -1,10 +1,13 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
+import com.example.package_delivery_system.data.dtos.packageDtos.GetPackageListDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
+import com.example.package_delivery_system.data.entities.Package;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.data.repositories.PackageRepository;
 import com.example.package_delivery_system.services.impl.PackageServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -23,11 +28,13 @@ public class UserController {
 
     private final UserServiceImpl userService;
     private final PackageServiceImpl packageService;
+    private final PackageRepository packageRepository;
 
     @Autowired
-    public UserController(UserServiceImpl userService, PackageServiceImpl packageService) {
+    public UserController(UserServiceImpl userService, PackageServiceImpl packageService, PackageRepository packageRepository) {
         this.userService = userService;
         this.packageService = packageService;
+        this.packageRepository = packageRepository;
     }
 
 
@@ -72,7 +79,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String getLoggedInHomepage() {
+    public String getLoggedInHomepage(Model model, Authentication authentication) {
+
+        //TODO: make model return packages by userId
+        List<Package> packages = packageRepository.findAll();
+
+        model.addAttribute("packages", packages);
         return "/user/profile";
     }
 

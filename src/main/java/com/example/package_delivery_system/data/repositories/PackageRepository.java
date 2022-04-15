@@ -13,4 +13,6 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
     List<Package> findAll();
 
     Optional<Package> findById(Long packageId);
+
+    List<Package> findAllBySender(Long senderId);
 }
