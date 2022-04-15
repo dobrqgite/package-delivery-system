@@ -1,7 +1,6 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
-import com.example.package_delivery_system.data.dtos.packageDtos.GetPackageListDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Package;
@@ -17,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,7 +80,9 @@ public class UserController {
     public String getLoggedInHomepage(Model model, Authentication authentication) {
 
         //TODO: make model return packages by userId
-        List<Package> packages = packageRepository.findAll();
+        List<Package> packages = packageRepository.findAll().stream()
+                .filter(p -> p.getReceiver().getEmail().equals(((UserEntity)authentication.getPrincipal()).getEmail()))
+                .collect(Collectors.toUnmodifiableList());
 
         model.addAttribute("packages", packages);
         return "/user/profile";

@@ -192,143 +192,53 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab">
-            <ul class="list-group">
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab">
+                    <ul class="list-group">
+                        <div class="list-group-item" style="background-color: blanchedalmond;">
+                            <th:block th:each="customer: ${customers}">
+                                <li class="row">
+                                    <div class="col">
+                                        <p style="margin-top: 10px;" th:text="${customer.username}"></p>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#" style="float: right; margin-top: 10px;">details</a>
+                                    </div>
+                                </li>
+                            </th:block>
                         </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
+                    </ul>
                 </div>
-
-                <div class="list-group-item" style="background-color: pink;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-            </ul>
         </div>
         <div class="tab-pane fade" id="pills-agent" role="tabpanel" aria-labelledby="pills-agent-tab">
             <ul class="list-group">
                 <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: pink;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
+                    <th:block th:each="agent: ${agents}">
+                        <li class="row">
+                            <div class="col">
+                                <p style="margin-top: 10px;" th:text="${agent.username}"></p>
+                            </div>
+                            <div class="col">
+                                <a href="#" style="float: right; margin-top: 10px;">details</a>
+                            </div>
+                        </li>
+                    </th:block>
                 </div>
             </ul>
         </div>
         <div class="tab-pane fade" id="pills-driver" role="tabpanel" aria-labelledby="pills-driver-tab">
             <ul class="list-group">
                 <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: pink;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div class="list-group-item" style="background-color: blanchedalmond;">
-                    <li class="row">
-                        <div class="col">
-                            <p style="margin-top: 10px;">package name #12341234</p>
-                        </div>
-                        <div class="col">
-                            <a href="#" style="float: right; margin-top: 10px;">details</a>
-                        </div>
-                    </li>
+                    <th:block th:each="driver: ${drivers}">
+                        <li class="row">
+                            <div class="col">
+                                <p style="margin-top: 10px;" th:text="${driver.username}"></p>
+                            </div>
+                            <div class="col">
+                                <a href="#" style="float: right; margin-top: 10px;">details</a>
+                            </div>
+                        </li>
+                    </th:block>
                 </div>
             </ul>
         </div>

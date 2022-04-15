@@ -33,51 +33,23 @@
             </div>
             <div class="col-6">
                 <h1>My Packages</h1>
-                <ul class="list-group">
-                    <div class="list-group-item" style="background-color: blanchedalmond;">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;">package name #12341234</p>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab">
+                        <ul class="list-group">
+                            <div class="list-group-item" style="background-color: blanchedalmond;">
+                                <th:block th:each="package: ${packages}">
+                                    <li class="row">
+                                        <div class="col">
+                                            <p style="margin-top: 10px;" th:text="${package.content}"></p>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" style="float: right; margin-top: 10px;">details</a>
+                                        </div>
+                                    </li>
+                                </th:block>
                             </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
-                            </div>
-                        </li>
+                        </ul>
                     </div>
-
-                    <div class="list-group-item" style="background-color: pink;">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;">package name #12341234</p>
-                            </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
-                            </div>
-                        </li>
-                    </div>
-
-                    <div class="list-group-item" style="background-color: blanchedalmond;">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;">package name #12341234</p>
-                            </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
-                            </div>
-                        </li>
-                    </div>
-
-                    <div class="list-group-item" style="background-color: blanchedalmond;">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;">package name #12341234</p>
-                            </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
-                            </div>
-                        </li>
-                    </div>
-                </ul>
             </div>
         </div>
 
