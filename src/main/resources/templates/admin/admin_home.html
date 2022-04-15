@@ -18,21 +18,25 @@
         <div class="container-fluid">
             <a class="navbar-brand" th:href="@{/admin/admin-index}">
                 <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
-        </div>
-        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal1" role="button">Add Employee</a>
 
+            <div class="d-grid gap-2 d-md-block">
+                <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal1" role="button">Add Employee</a>
+                <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal2" role="button">Add Vehicle</a>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h5 class="modal-title">Add Employee</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
                         <form id="driver-form" th:action="@{/admin/admin-home}" method="post">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <div class="btn-group mb-3 gap-2" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" th:value="DRIVER" name="role" id="role1"
                                        autocomplete="off" checked>
                                 <label class="btn btn-outline-primary" for="role1">Driver</label>
@@ -139,12 +143,57 @@
                 </div>
             </div>
         </div>
-    </nav>
 
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Vehicle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="vehicle-form" th:action="@{/admin/admin-home}" method="post">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="type" id="type"
+                                       class="form-control"
+                                       aria-describedby="firstnameHelp"
+                                       placeholder="Username...">
+                                <label for="type">Type</label>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="brand" id="brand"
+                                               class="form-control"
+                                               aria-describedby="firstnameHelp"
+                                               placeholder="First Name...">
+                                        <label for="brand">Brand</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="registrationNumber" id="registrationNumber"
+                                               class="form-control"
+                                               aria-describedby="lastnameHelp"
+                                               placeholder="Last Name...">
+                                        <label for="registrationNumber">Registration №...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 </div>
 
+
 <div class="main-container">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-left: 50px">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-customers-tab" data-bs-toggle="pill" data-bs-target="#customers"
                     type="button" role="tab" aria-controls="customers" aria-selected="true">Customers
@@ -164,30 +213,35 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="pills-customers-tab">
             <ul class="list-group">
-                <div class="list-group-item" style="background-color: blanchedalmond;">
+                <div class="list-group-item"
+                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
                     <th:block th:each="customer: ${customers}">
                         <li class="row">
                             <div class="col">
                                 <p style="margin-top: 10px;" th:text="${customer.username}"></p>
                             </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                <button class="btn btn-info me-md-2" type="button">Details</button>
+                                <button class="btn btn-danger" type="button">Ban User</button>
                             </div>
                         </li>
                     </th:block>
                 </div>
             </ul>
         </div>
+
         <div class="tab-pane fade" id="agents" role="tabpanel" aria-labelledby="pills-agents-tab">
             <ul class="list-group">
-                <div class="list-group-item" style="background-color: blanchedalmond;">
+                <div class="list-group-item"
+                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
                     <th:block th:each="agent: ${agents}">
                         <li class="row">
                             <div class="col">
                                 <p style="margin-top: 10px;" th:text="${agent.username}"></p>
                             </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                <button class="btn btn-info me-md-2" type="button">Details</button>
+                                <button class="btn btn-danger" type="button">Ban User</button>
                             </div>
                         </li>
                     </th:block>
@@ -196,14 +250,16 @@
         </div>
         <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="pills-drivers-tab">
             <ul class="list-group">
-                <div class="list-group-item" style="background-color: blanchedalmond;">
+                <div class="list-group-item"
+                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
                     <th:block th:each="driver: ${drivers}">
                         <li class="row">
                             <div class="col">
                                 <p style="margin-top: 10px;" th:text="${driver.username}"></p>
                             </div>
-                            <div class="col">
-                                <a href="#" style="float: right; margin-top: 10px;">details</a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                <button class="btn btn-info me-md-2" type="button">Details</button>
+                                <button class="btn btn-danger" type="button">Ban User</button>
                             </div>
                         </li>
                     </th:block>
