@@ -2,6 +2,8 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeResponseDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserBanDto;
+import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
@@ -71,5 +73,14 @@ public class AdminServiceImpl implements AdminService {
         this.userRepository.save(employee);
 
         return this.modelMapper.map(employee, EmployeeResponseDto.class);
+    }
+
+    @Override
+    public UserResponseDto banUser(UserBanDto userBanDto) {
+        UserEntity userToBan = this.userRepository.findByEmail(userBanDto.getEmail());
+        userToBan.setActive(false);
+
+        this.userRepository.save(userToBan);
+        return this.modelMapper.map(userToBan, UserResponseDto.class);
     }
 }

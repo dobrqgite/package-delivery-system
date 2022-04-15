@@ -80,6 +80,9 @@ public class UserEntity implements UserDetails {
     @OneToMany(mappedBy = "sender")
     private List<Package> packagesToSend;
 
+    @Column(name = "is_active", columnDefinition = "tinyint(1)")
+    private boolean isActive = true;
+
     public UserEntity(Long id, String username, String fullName,
                       String phone, String UCN, String email,
                       String password, Address address, Set<Role> roles,
