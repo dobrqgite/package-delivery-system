@@ -32,14 +32,7 @@ public class AdminController {
 
 
     @RequestMapping(value = "/admin-home", method = RequestMethod.GET)
-    public String adminHome() {
-        return "/admin/admin_home";
-    }
-
-    @RequestMapping(value = "/admin-home", method = RequestMethod.POST)
-    public String registerEmployee(EmployeeRegisterDto registerUserDto, Model model) {
-        this.adminService.registerEmployee(registerUserDto);
-
+    public String adminHome(Model model) {
         List<GetUserInfoDto> customers = this.userRepository.findAll()
                 .stream()
                 .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("CUSTOMER")))
@@ -65,6 +58,14 @@ public class AdminController {
         model.addAttribute("drivers", drivers);
 
         return "/admin/admin_home";
+    }
+
+    @RequestMapping(value = "/admin-home", method = RequestMethod.POST)
+    public String registerEmployee(EmployeeRegisterDto registerUserDto) {
+        this.adminService.registerEmployee(registerUserDto);
+
+
+        return "redirect:/admin/admin-home";
     }
 
     @RequestMapping(value = "/admin-index", method = RequestMethod.GET)
