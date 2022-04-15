@@ -32,39 +32,24 @@ public class AdminController {
 
 
     @RequestMapping(value = "/admin-home", method = RequestMethod.GET)
-    public String adminHome() {
+    public String adminHome(Model model) {
+        List<GetUserInfoDto> customers = adminService.getGetCustomerInfo("CUSTOMER");
+        model.addAttribute("customers", customers);
+
+        List<GetUserInfoDto> agents = adminService.getGetCustomerInfo("AGENT");
+        model.addAttribute("agents", agents);
+
+        List<GetUserInfoDto> drivers = adminService.getGetCustomerInfo("DRIVER");
+        model.addAttribute("drivers", drivers);
+
         return "/admin/admin_home";
     }
 
     @RequestMapping(value = "/admin-home", method = RequestMethod.POST)
-    public String registerEmployee(EmployeeRegisterDto registerUserDto, Model model) {
+    public String registerEmployee(EmployeeRegisterDto registerUserDto) {
         this.adminService.registerEmployee(registerUserDto);
 
-        List<GetUserInfoDto> customers = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("CUSTOMER")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
-        model.addAttribute("customers", customers);
-
-        List<GetUserInfoDto> agents = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("AGENT")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
-        model.addAttribute("agents", agents);
-
-        List<GetUserInfoDto> drivers = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("DRIVER")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
-        model.addAttribute("drivers", drivers);
-
-        return "/admin/admin_home";
+        return "redirect:/admin/admin-home";
     }
 
     @RequestMapping(value = "/admin-index", method = RequestMethod.GET)
