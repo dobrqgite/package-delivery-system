@@ -33,28 +33,13 @@ public class AdminController {
 
     @RequestMapping(value = "/admin-home", method = RequestMethod.GET)
     public String adminHome(Model model) {
-        List<GetUserInfoDto> customers = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("CUSTOMER")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
+        List<GetUserInfoDto> customers = adminService.getGetCustomerInfo("CUSTOMER");
         model.addAttribute("customers", customers);
 
-        List<GetUserInfoDto> agents = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("AGENT")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
+        List<GetUserInfoDto> agents = adminService.getGetCustomerInfo("AGENT");
         model.addAttribute("agents", agents);
 
-        List<GetUserInfoDto> drivers = this.userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals("DRIVER")))
-                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
-                .collect(Collectors.toList());
-
+        List<GetUserInfoDto> drivers = adminService.getGetCustomerInfo("DRIVER");
         model.addAttribute("drivers", drivers);
 
         return "/admin/admin_home";
@@ -63,7 +48,6 @@ public class AdminController {
     @RequestMapping(value = "/admin-home", method = RequestMethod.POST)
     public String registerEmployee(EmployeeRegisterDto registerUserDto) {
         this.adminService.registerEmployee(registerUserDto);
-
 
         return "redirect:/admin/admin-home";
     }

@@ -2,6 +2,7 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeResponseDto;
+import com.example.package_delivery_system.data.dtos.userDtos.GetUserInfoDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserBanDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
 import com.example.package_delivery_system.data.entities.Address;
@@ -16,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -82,5 +85,14 @@ public class AdminServiceImpl implements AdminService {
 
         this.userRepository.save(userToBan);
         return this.modelMapper.map(userToBan, UserResponseDto.class);
+    }
+
+    @Override
+    public List<GetUserInfoDto> getGetCustomerInfo(String userRole) {
+        return this.userRepository.findAll()
+                .stream()
+                .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals(userRole)))
+                .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
+                .collect(Collectors.toList());
     }
 }
