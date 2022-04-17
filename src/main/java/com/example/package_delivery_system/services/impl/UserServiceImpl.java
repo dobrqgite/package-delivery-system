@@ -1,5 +1,7 @@
 package com.example.package_delivery_system.services.impl;
 
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressResponseDto;
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressUpdateDto;
 import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
@@ -112,6 +114,21 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userToUpdate);
 
         return modelMapper.map(userToUpdate, UserResponseDto.class);
+    }
+
+    @Override
+    public AddressResponseDto updateUserAddress(Authentication loggedInUser, AddressUpdateDto addressUpdateDto) {
+
+        UserEntity userToUpdate = (UserEntity) loggedInUser.getPrincipal();
+        Address updatedAddress = modelMapper.map(addressUpdateDto, Address.class);
+
+        userToUpdate.setAddress(updatedAddress);
+
+        addressRepository.save(updatedAddress);
+
+        userRepository.save(userToUpdate);
+
+        return modelMapper.map(userToUpdate, AddressResponseDto.class);
     }
 
     @Override

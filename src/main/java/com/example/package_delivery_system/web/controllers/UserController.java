@@ -1,5 +1,6 @@
 package com.example.package_delivery_system.web.controllers;
 
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressUpdateDto;
 import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
 import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
@@ -78,8 +79,9 @@ public class UserController {
 
     //TODO: implement method and query from repository
     @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
-    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
+    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto, AddressUpdateDto addressUpdateDto) {
         userService.updateUserDetails(authentication, editedUserCredentialsDto);
+        userService.updateUserAddress(authentication, addressUpdateDto);
         return "/user/edit_profile";
     }
 

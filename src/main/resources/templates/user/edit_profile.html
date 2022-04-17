@@ -112,18 +112,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form th:action="@{/user/edit-profile}" method="post">
                         <div class="mb-3">
                             <label class="small mb-1" for="inputCountry">Country</label>
-                            <input class="form-control" id="inputCountry" type="country" placeholder="Country">
+                            <input class="form-control" id="inputCountry" type="country" name="country" placeholder="Country">
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="inputCity">City</label>
-                            <input class="form-control" id="inputCity" type="text" placeholder="City" value="City">
+                            <input class="form-control" id="inputCity" type="text" name = "city" placeholder="City" value="City">
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="inputAddress">Personal address</label>
-                            <input class="form-control" id="inputAddress" type="address"
+                            <input class="form-control" id="inputAddress" name="fullAddress" type="address"
                                    placeholder="Street, number, building number, floor, apartment">
                         </div>
                         <div class="col">
