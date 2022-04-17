@@ -1,5 +1,6 @@
 package com.example.package_delivery_system.services.impl;
 
+import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
@@ -14,6 +15,9 @@ import com.example.package_delivery_system.services.api.AddressService;
 import com.example.package_delivery_system.services.api.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -96,11 +100,21 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserResponseDto.class);
     }
 
-    //todo:add creation methods for driver and agent(ADMIN ONLY COMMANDS)
 
-    @Override
-    public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {
-        return null;
+    public UserResponseDto updateUserDetails(Authentication loggedInUser, EditUserCredentialsDto userUpdateDto){
+
+        UserEntity updatedUser = modelMapper.map(userUpdateDto, UserEntity.class);
+        //find the logged in user
+        UserEntity userToUpdate = (UserEntity) loggedInUser.getPrincipal();
+
+        userToUpdate.setUsername(updatedUser.getUsername());
+        userToUpdate.setFullName(updatedUser.getFullName());
+        userToUpdate.setEmail(updatedUser.getEmail());
+        userToUpdate.setPhone(updatedUser.getPhone());
+
+        userRepository.save(userToUpdate);
+
+        return modelMapper.map(userToUpdate, UserResponseDto.class);
     }
 
     @Override

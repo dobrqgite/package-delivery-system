@@ -1,11 +1,13 @@
 package com.example.package_delivery_system.web.controllers;
 
 import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
+import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
-import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
+import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Package;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.PackageRepository;
 import com.example.package_delivery_system.services.impl.PackageServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
@@ -27,12 +29,14 @@ public class UserController {
     private final UserServiceImpl userService;
     private final PackageServiceImpl packageService;
     private final PackageRepository packageRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
-    public UserController(UserServiceImpl userService, PackageServiceImpl packageService, PackageRepository packageRepository) {
+    public UserController(UserServiceImpl userService, PackageServiceImpl packageService, PackageRepository packageRepository, AddressRepository addressRepository) {
         this.userService = userService;
         this.packageService = packageService;
         this.packageRepository = packageRepository;
+        this.addressRepository = addressRepository;
     }
 
 
@@ -61,14 +65,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
-    public String editProfile() {
+    public String editProfile(Model model) {
+
+        //if project breaks-THIS IS THE REASON!!!!!
+        List<Address> addressList = this.addressRepository.findAll().stream()
+                .collect(Collectors.toUnmodifiableList());
+
+        model.addAttribute("addresses", addressList);
+
         return "/user/edit_profile";
     }
 
     //TODO: implement method and query from repository
-    @RequestMapping(value = "/edit-profile", method = RequestMethod.PUT)
-    public UserUpdateDto editCredentials() {
-        return null;
+    @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
+    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
+        userService.updateUserDetails(authentication, editedUserCredentialsDto);
+        return "/user/edit_profile";
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)
@@ -85,6 +97,8 @@ public class UserController {
                 .collect(Collectors.toUnmodifiableList());
 
         model.addAttribute("packages", packages);
+        //might go boom
+        model.addAttribute("packagesToReceive", authentication.getPrincipal());
         return "/user/profile";
     }
 
