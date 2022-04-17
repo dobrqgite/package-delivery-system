@@ -66,13 +66,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
-    public String editProfile(Model model) {
+    public String editProfile(Authentication currentlyLoggedInUser, Model model) {
 
         //if project breaks-THIS IS THE REASON!!!!!
-        List<Address> addressList = this.addressRepository.findAll().stream()
-                .collect(Collectors.toUnmodifiableList());
+        Address address = ((UserEntity)currentlyLoggedInUser.getPrincipal()).getAddress();
 
-        model.addAttribute("addresses", addressList);
+        model.addAttribute("address", address);
 
         return "/user/edit_profile";
     }
