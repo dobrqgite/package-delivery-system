@@ -43,19 +43,19 @@
                                 <form th:action="@{/user/edit-profile}" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputUsername">Username</label>
-                                        <input class="form-control" id="inputUsername" name="username" type="text" th:placeholder="|${loggedInUser.getUsername}|">
+                                        <input class="form-control" id="inputUsername" name="username" type="text" th:placeholder="|${loggedInUser.username}|">
                                     </div>
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputFullName">Full name</label>
-                                        <input class="form-control" id="inputFullName" name="fullName" type="text" th:placeholder="|${loggedInUser.getFullName}|">
+                                        <input class="form-control" id="inputFullName" name="fullName" type="text" th:placeholder="|${loggedInUser.fullName}|">
                                     </div>
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                        <input class="form-control" id="inputEmailAddress" name="email" type="email" th:placeholder="|${loggedInUser.getEmail}|">
+                                        <input class="form-control" id="inputEmailAddress" name="email" type="email" th:placeholder="|${loggedInUser.email}|">
                                     </div>
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputPhoneNumber">Phone number</label>
-                                        <input class="form-control" id="inputPhoneNumber" name="phoneNumber" type="phone" th:placeholder="|${loggedInUser.getPhone}|">
+                                        <input class="form-control" id="inputPhoneNumber" name="phoneNumber" type="phone" th:placeholder="|${loggedInUser.phone}|">
                                     </div>
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button class="btn btn-outline-primary me-md-1" type="submit">Save changes</button>

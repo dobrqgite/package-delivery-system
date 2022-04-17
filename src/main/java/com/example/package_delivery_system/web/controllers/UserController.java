@@ -81,13 +81,13 @@ public class UserController {
     @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
     public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
         userService.updateUserDetails(authentication, editedUserCredentialsDto);
-        return "/user/edit_profile";
+        return "redirect:/user/edit-profile";
     }
 
     @RequestMapping(value = "/edit-address", method = RequestMethod.POST)
     public String editAddress(Authentication authentication, AddressUpdateDto addressUpdateDto) {
         userService.updateUserAddress(authentication, addressUpdateDto);
-        return "/user/edit_profile";
+        return "redirect:/user/edit-profile";
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)
