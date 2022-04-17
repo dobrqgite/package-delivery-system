@@ -65,8 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        //TODO: ADD ANT MATCHER TO HANDLE ADMIN VIEW(ADMIN SHOULD SEE EVERYTHING)
         http
                 .cors().and().csrf().disable()
                 .authorizeRequests()
@@ -79,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/user/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/user/gateway")
+                .defaultSuccessUrl("/user/gateway", true)
                 .and()
                 .logout().logoutUrl("/user/logout").logoutSuccessUrl("/").permitAll()
                 .and()
