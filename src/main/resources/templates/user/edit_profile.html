@@ -40,7 +40,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Account Details</div>
                             <div class="card-body">
-                                <form th:action="@{/user/edit-profile}" method="post">
+                                <form action="/user/edit-profile" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputUsername">Username</label>
                                         <input class="form-control" id="inputUsername" name="username" type="text" placeholder="Enter your username">
@@ -73,7 +73,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Adresses</div>
                             <div class="card-body">
-                                <form th:action="@{/user/edit-profile}" method="post">
+                                <form action="/user/edit-address" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputCountry">Country</label>
                                         <input class="form-control" id="inputCountry" type="text" name="country" placeholder="Country">

@@ -66,10 +66,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
-    public String editProfile(Authentication currentlyLoggedInUser, Model model) {
+    public String editProfile(Authentication authentication, Model model) {
 
         //if project breaks-THIS IS THE REASON!!!!!
-        Address address = ((UserEntity)currentlyLoggedInUser.getPrincipal()).getAddress();
+        Address address = ((UserEntity)authentication.getPrincipal()).getAddress();
 
         model.addAttribute("address", address);
 
@@ -78,10 +78,15 @@ public class UserController {
 
     //TODO: implement method and query from repository
     @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
-    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto, AddressUpdateDto addressUpdateDto) {
+    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
         userService.updateUserDetails(authentication, editedUserCredentialsDto);
-        userService.updateUserAddress(authentication, addressUpdateDto);
         return "/user/edit_profile";
+    }
+
+    @RequestMapping(value = "/edit-address", method = RequestMethod.POST)
+    public String editAddress(Authentication authentication, AddressUpdateDto addressUpdateDto) {
+        userService.updateUserAddress(authentication, addressUpdateDto);
+        return "redirect:/edit-profile";
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)
