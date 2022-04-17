@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**", "/images/**", "/").permitAll()
                 .antMatchers("/user/signup", "/user/login").anonymous()
-                .antMatchers("/user/edit-profile", "/user/user-index", "/user/profile", "/user/gateway", "/user/send-package").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers("/user/edit-address", "/user/edit-profile", "/user/user-index", "/user/profile", "/user/gateway", "/user/send-package").hasAnyAuthority("CUSTOMER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
