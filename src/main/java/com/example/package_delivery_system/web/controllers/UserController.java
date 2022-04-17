@@ -1,11 +1,14 @@
 package com.example.package_delivery_system.web.controllers;
 
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressUpdateDto;
 import com.example.package_delivery_system.data.dtos.packageDtos.CreatePackageDto;
+import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
-import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
+import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Package;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
+import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.PackageRepository;
 import com.example.package_delivery_system.services.impl.PackageServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
@@ -27,14 +30,16 @@ public class UserController {
     private final UserServiceImpl userService;
     private final PackageServiceImpl packageService;
     private final PackageRepository packageRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
-    public UserController(UserServiceImpl userService, PackageServiceImpl packageService, PackageRepository packageRepository) {
+    public UserController(UserServiceImpl userService, PackageServiceImpl packageService,
+            PackageRepository packageRepository, AddressRepository addressRepository) {
         this.userService = userService;
         this.packageService = packageService;
         this.packageRepository = packageRepository;
+        this.addressRepository = addressRepository;
     }
-
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String register() {
@@ -61,14 +66,28 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
-    public String editProfile() {
+    public String editProfile(Authentication authentication, Model model) {
+        // might not work
+        Address address = ((UserEntity) authentication.getPrincipal()).getAddress();
+        UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
+
+        model.addAttribute("address", address);
+        model.addAttribute("loggedInUser", userEntity);
+
         return "/user/edit_profile";
     }
 
-    //TODO: implement method and query from repository
-    @RequestMapping(value = "/edit-profile", method = RequestMethod.PUT)
-    public UserUpdateDto editCredentials() {
-        return null;
+    // TODO: implement method and query from repository
+    @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
+    public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
+        userService.updateUserDetails(authentication, editedUserCredentialsDto);
+        return "redirect:/user/edit-profile";
+    }
+
+    @RequestMapping(value = "/edit-address", method = RequestMethod.POST)
+    public String editAddress(Authentication authentication, AddressUpdateDto addressUpdateDto) {
+        userService.updateUserAddress(authentication, addressUpdateDto);
+        return "redirect:/user/edit-profile";
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)
@@ -79,12 +98,14 @@ public class UserController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String getLoggedInHomepage(Model model, Authentication authentication) {
 
-        //TODO: make model return packages by userId
+        // TODO: make model return packages by userId
         List<Package> packages = packageRepository.findAll().stream()
-                .filter(p -> p.getReceiver().getEmail().equals(((UserEntity)authentication.getPrincipal()).getEmail()))
+                .filter(p -> p.getReceiver().getEmail().equals(((UserEntity) authentication.getPrincipal()).getEmail()))
                 .collect(Collectors.toUnmodifiableList());
 
         model.addAttribute("packages", packages);
+        // might go boom
+        model.addAttribute("packagesToReceive", authentication.getPrincipal());
         return "/user/profile";
     }
 
@@ -95,19 +116,17 @@ public class UserController {
 
     @RequestMapping(value = "/send-package", method = RequestMethod.POST)
     public String sendPackage(CreatePackageDto createPackageDto, Authentication authentication) {
-        this.packageService.addPackage(createPackageDto, ((UserEntity)authentication.getPrincipal()).getEmail());
+        this.packageService.addPackage(createPackageDto, ((UserEntity) authentication.getPrincipal()).getEmail());
         return "/user/send_package";
     }
 
-
     @GetMapping("/gateway")
     public String gateway(Authentication authentication) {
-        //authentication - currently logged in user(principal)
-        Collection<Role> userRoles =
-                authentication.getAuthorities()
-                        .stream()
-                        .map(role -> (Role) role)
-                        .collect(Collectors.toList());
+        // authentication - currently logged in user(principal)
+        Collection<Role> userRoles = authentication.getAuthorities()
+                .stream()
+                .map(role -> (Role) role)
+                .collect(Collectors.toList());
 
         for (Role userRole : userRoles) {
             switch (userRole.getAuthority()) {

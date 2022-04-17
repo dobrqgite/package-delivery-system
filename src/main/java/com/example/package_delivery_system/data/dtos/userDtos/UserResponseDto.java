@@ -23,12 +23,4 @@ public class UserResponseDto {
 
     private String email;
 
-    public UserResponseDto(Long id, String username, String fullName, String phone, String UCN, String email) {
-        this.id = id;
-        this.username = username;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.UCN = UCN;
-        this.email = email;
-    }
 }

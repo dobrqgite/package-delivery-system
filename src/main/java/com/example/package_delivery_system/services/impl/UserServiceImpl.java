@@ -1,8 +1,10 @@
 package com.example.package_delivery_system.services.impl;
 
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressResponseDto;
+import com.example.package_delivery_system.data.dtos.addressDtos.AddressUpdateDto;
+import com.example.package_delivery_system.data.dtos.userDtos.EditUserCredentialsDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
-import com.example.package_delivery_system.data.dtos.userDtos.UserUpdateDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
@@ -14,6 +16,7 @@ import com.example.package_delivery_system.services.api.AddressService;
 import com.example.package_delivery_system.services.api.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -96,11 +99,36 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserResponseDto.class);
     }
 
-    //todo:add creation methods for driver and agent(ADMIN ONLY COMMANDS)
+
+    public UserResponseDto updateUserDetails(Authentication loggedInUser, EditUserCredentialsDto userUpdateDto){
+
+        UserEntity updatedUser = modelMapper.map(userUpdateDto, UserEntity.class);
+        //find the logged in user
+        UserEntity userToUpdate = (UserEntity) loggedInUser.getPrincipal();
+
+        userToUpdate.setUsername(updatedUser.getUsername());
+        userToUpdate.setFullName(updatedUser.getFullName());
+        userToUpdate.setEmail(updatedUser.getEmail());
+        userToUpdate.setPhone(updatedUser.getPhone());
+
+        userRepository.save(userToUpdate);
+
+        return modelMapper.map(userToUpdate, UserResponseDto.class);
+    }
 
     @Override
-    public UserResponseDto editCredentials(UserUpdateDto userUpdateDto) {
-        return null;
+    public AddressResponseDto updateUserAddress(Authentication loggedInUser, AddressUpdateDto addressUpdateDto) {
+
+        UserEntity userToUpdate = (UserEntity) loggedInUser.getPrincipal();
+        Address updatedAddress = modelMapper.map(addressUpdateDto, Address.class);
+
+        userToUpdate.setAddress(updatedAddress);
+
+        addressRepository.save(updatedAddress);
+
+        userRepository.save(userToUpdate);
+
+        return modelMapper.map(userToUpdate, AddressResponseDto.class);
     }
 
     @Override
