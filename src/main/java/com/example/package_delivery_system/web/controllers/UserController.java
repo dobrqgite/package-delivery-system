@@ -67,7 +67,7 @@ public class UserController {
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
     public String editProfile(Authentication authentication, Model model) {
-        // might not work
+        // DESN'T WORK!!!MUST FIX!!
         Address address = ((UserEntity) authentication.getPrincipal()).getAddress();
         UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
 
