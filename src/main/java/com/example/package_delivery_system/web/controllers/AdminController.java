@@ -49,14 +49,14 @@ public class AdminController {
         return "/admin/admin_home";
     }
 
-    @RequestMapping(value = "/admin-home", method = RequestMethod.POST)
+    @RequestMapping(value = "/register-employee", method = RequestMethod.POST)
     public String registerEmployee(EmployeeRegisterDto registerUserDto) {
         this.adminService.registerEmployee(registerUserDto);
 
         return "redirect:/admin/admin-home";
     }
 
-    @RequestMapping(value = "/admin-create-vehicle", method = RequestMethod.POST)
+    @RequestMapping(value = "/create-vehicle", method = RequestMethod.POST)
     public String registerVehicle(CreateVehicleDto createVehicleDto) {
         this.vehicleService.createVehicle(createVehicleDto);
 
