@@ -21,8 +21,8 @@
                             </div>
                             <div class="col">
                                 <ul class="navbar-nav ms-auto">
-                                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">My
-                                    Profile</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${loggedInUser.username}"></a>
                                         <ul class="dropdown-menu " aria-labelledby="navbarDropdown" style="right: 50px;">
                                             <li><a class="dropdown-item" th:href="@{/user/edit-profile}">Edit</a></li>
                                             <li><a class="dropdown-item" th:href="@{/user/profile}">My orders</a></li>
