@@ -209,6 +209,11 @@
                     type="button" role="tab" aria-controls="drivers" aria-selected="false">Drivers
             </button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-vehicles-tab" data-bs-toggle="pill" data-bs-target="#vehicles"
+                    type="button" role="tab" aria-controls="vehicles" aria-selected="false">Vehicles
+            </button>
+        </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="pills-customers-tab">
@@ -260,6 +265,22 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
                                 <button class="btn btn-info me-md-2" type="button">Details</button>
                                 <button class="btn btn-danger" type="button">Ban User</button>
+                            </div>
+                        </li>
+                    </th:block>
+                </div>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="vehicles" role="tabpanel" aria-labelledby="pills-vehicles-tab">
+            <ul class="list-group">
+                <div class="list-group-item"
+                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
+                    <th:block th:each="vehicle: ${vehicles}">
+                        <li class="row">
+                            <div class="col">
+                                <p style="margin-top: 10px;" th:text="${vehicle.brand}"></p>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
                             </div>
                         </li>
                     </th:block>

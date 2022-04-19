@@ -3,6 +3,7 @@ package com.example.package_delivery_system.web.controllers;
 import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegisterDto;
 import com.example.package_delivery_system.data.dtos.userDtos.GetUserInfoDto;
 import com.example.package_delivery_system.data.dtos.vehicleDtos.CreateVehicleDto;
+import com.example.package_delivery_system.data.dtos.vehicleDtos.GetVehicleInfoDto;
 import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.services.api.AdminService;
 import com.example.package_delivery_system.services.api.VehicleService;
@@ -36,15 +37,17 @@ public class AdminController {
 
     @RequestMapping(value = "/admin-home", method = RequestMethod.GET)
     public String adminHome(Model model) {
-        List<GetUserInfoDto> customers = adminService.getGetCustomerInfo("CUSTOMER");
+        List<GetUserInfoDto> customers = adminService.getCustomerInfo("CUSTOMER");
         model.addAttribute("customers", customers);
 
-        List<GetUserInfoDto> agents = adminService.getGetCustomerInfo("AGENT");
+        List<GetUserInfoDto> agents = adminService.getCustomerInfo("AGENT");
         model.addAttribute("agents", agents);
 
-        List<GetUserInfoDto> drivers = adminService.getGetCustomerInfo("DRIVER");
+        List<GetUserInfoDto> drivers = adminService.getCustomerInfo("DRIVER");
         model.addAttribute("drivers", drivers);
 
+        List<GetVehicleInfoDto> vehicles = adminService.getVehicles();
+        model.addAttribute("vehicles", vehicles);
 
         return "/admin/admin_home";
     }

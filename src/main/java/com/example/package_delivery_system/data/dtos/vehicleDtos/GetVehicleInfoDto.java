@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateVehicleDto {
+public class GetVehicleInfoDto {
 
     private String category;
 

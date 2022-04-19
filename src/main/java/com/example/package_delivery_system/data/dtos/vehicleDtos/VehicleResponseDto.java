@@ -16,4 +16,5 @@ public class VehicleResponseDto {
     private String brand;
 
     private String registrationNumber;
+
 }

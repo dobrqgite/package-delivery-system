@@ -5,10 +5,12 @@ import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRespon
 import com.example.package_delivery_system.data.dtos.userDtos.GetUserInfoDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserBanDto;
 import com.example.package_delivery_system.data.dtos.userDtos.UserResponseDto;
+import com.example.package_delivery_system.data.dtos.vehicleDtos.GetVehicleInfoDto;
 import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.UserEntity;
 import com.example.package_delivery_system.data.repositories.RoleRepository;
 import com.example.package_delivery_system.data.repositories.UserRepository;
+import com.example.package_delivery_system.data.repositories.VehicleRepository;
 import com.example.package_delivery_system.exceptions.BadRequestException;
 import com.example.package_delivery_system.services.api.AddressService;
 import com.example.package_delivery_system.services.api.AdminService;
@@ -34,14 +36,16 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final AddressService addressService;
+    private final VehicleRepository vehicleRepository;
 
     @Autowired
     public AdminServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                            AddressService addressService, PasswordEncoder passwordEncoder) {
+                            AddressService addressService, PasswordEncoder passwordEncoder, VehicleRepository vehicleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.addressService = addressService;
         this.passwordEncoder = passwordEncoder;
+        this.vehicleRepository = vehicleRepository;
         this.modelMapper = new ModelMapper();
     }
 
@@ -88,11 +92,19 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<GetUserInfoDto> getGetCustomerInfo(String userRole) {
+    public List<GetUserInfoDto> getCustomerInfo(String userRole) {
         return this.userRepository.findAll()
                 .stream()
                 .filter(user -> user.getRoles().stream().anyMatch(role -> role.getAuthority().equals(userRole)))
                 .map(user -> this.modelMapper.map(user, GetUserInfoDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GetVehicleInfoDto> getVehicles() {
+        return this.vehicleRepository.findAll()
+                .stream()
+                .map(vehicle -> this.modelMapper.map(vehicle, GetVehicleInfoDto.class))
                 .collect(Collectors.toList());
     }
 }

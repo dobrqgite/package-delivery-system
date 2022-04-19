@@ -10,4 +10,5 @@ public class UserBanDto {
     public String getEmail() {
         return email;
     }
+
 }
