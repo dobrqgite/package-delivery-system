@@ -1,6 +1,5 @@
 package com.example.package_delivery_system.data.dtos.packageDtos;
 
-import com.example.package_delivery_system.data.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

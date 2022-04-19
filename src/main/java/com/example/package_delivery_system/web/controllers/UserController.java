@@ -8,7 +8,6 @@ import com.example.package_delivery_system.data.entities.Address;
 import com.example.package_delivery_system.data.entities.Package;
 import com.example.package_delivery_system.data.entities.Role;
 import com.example.package_delivery_system.data.entities.UserEntity;
-import com.example.package_delivery_system.data.repositories.AddressRepository;
 import com.example.package_delivery_system.data.repositories.PackageRepository;
 import com.example.package_delivery_system.services.impl.PackageServiceImpl;
 import com.example.package_delivery_system.services.impl.UserServiceImpl;
@@ -30,15 +29,13 @@ public class UserController {
     private final UserServiceImpl userService;
     private final PackageServiceImpl packageService;
     private final PackageRepository packageRepository;
-    private final AddressRepository addressRepository;
 
     @Autowired
     public UserController(UserServiceImpl userService, PackageServiceImpl packageService,
-            PackageRepository packageRepository, AddressRepository addressRepository) {
+            PackageRepository packageRepository) {
         this.userService = userService;
         this.packageService = packageService;
         this.packageRepository = packageRepository;
-        this.addressRepository = addressRepository;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -101,15 +98,14 @@ public class UserController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String getLoggedInHomepage(Model model, Authentication authentication) {
 
-        // TODO: make model return packages by userId
         List<Package> packages = packageRepository.findAll().stream()
                 .collect(Collectors.toUnmodifiableList());
         UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
 
         model.addAttribute("loggedInUser", userEntity);
         model.addAttribute("packages", packages);
-        // might go boom
         model.addAttribute("packagesToReceive", authentication.getPrincipal());
+
         return "/user/profile";
     }
 

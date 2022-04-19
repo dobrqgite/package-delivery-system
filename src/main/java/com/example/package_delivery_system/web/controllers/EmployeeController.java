@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EmployeeController {
 
-
     @RequestMapping(value = "/agent/agent-home", method = RequestMethod.GET)
     public String getAgentHome(){
         return "/employee/agent/agent_home";

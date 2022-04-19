@@ -4,10 +4,8 @@ import com.example.package_delivery_system.data.dtos.employeeDtos.EmployeeRegist
 import com.example.package_delivery_system.data.dtos.userDtos.GetUserInfoDto;
 import com.example.package_delivery_system.data.dtos.vehicleDtos.CreateVehicleDto;
 import com.example.package_delivery_system.data.dtos.vehicleDtos.GetVehicleInfoDto;
-import com.example.package_delivery_system.data.repositories.UserRepository;
 import com.example.package_delivery_system.services.api.AdminService;
 import com.example.package_delivery_system.services.api.VehicleService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +19,11 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
-    private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
     private final VehicleService vehicleService;
 
     @Autowired
-    public AdminController(AdminService adminService, UserRepository userRepository,
-                           ModelMapper modelMapper, VehicleService vehicleService) {
+    public AdminController(AdminService adminService, VehicleService vehicleService) {
         this.adminService = adminService;
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
         this.vehicleService = vehicleService;
     }
 
@@ -70,5 +63,4 @@ public class AdminController {
     public String getUserIndex() {
         return "/admin/admin_index";
     }
-
 }
