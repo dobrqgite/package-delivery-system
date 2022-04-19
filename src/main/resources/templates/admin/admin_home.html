@@ -3,292 +3,274 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>admin_home</title>
 </head>
 
 <body>
-<div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/user/user-index}">
-                <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" id="default-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/user/user-index}">
+                    <img src="/images/pds_logo.png" alt="" class="d-inline-block align-text-top"></a>
 
-            <div class="d-grid gap-2 d-md-block">
-                <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal1" role="button">Add Employee</a>
-                <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal2" role="button">Add Vehicle</a>
+                <div class="d-grid gap-2 d-md-block">
+                    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal1" role="button">Add Employee</a>
+                    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal2" role="button">Add Vehicle</a>
+                </div>
             </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Employee</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Employee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                    <div class="modal-body">
-                        <form id="driver-form" th:action="@{/admin/register-employee}" method="post">
-                            <div class="btn-group mb-3 gap-2" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" th:value="DRIVER" name="role" id="role1"
-                                       autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="role1">Driver</label>
+                        <div class="modal-body">
+                            <form id="driver-form" th:action="@{/admin/register-employee}" method="post">
+                                <div class="btn-group mb-3 gap-2" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" th:value="DRIVER" name="role" id="role1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="role1">Driver</label>
 
-                                <input type="radio" class="btn-check" th:value="AGENT" name="role" id="role2"
-                                       autocomplete="off">
-                                <label class="btn btn-outline-primary" for="role2">Agent</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" name="username" id="username"
-                                       class="form-control"
-                                       aria-describedby="firstnameHelp"
-                                       placeholder="Username...">
-                                <label for="username">Username</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="firstName" id="firstName"
-                                               class="form-control"
-                                               aria-describedby="firstnameHelp"
-                                               placeholder="First Name...">
-                                        <label for="firstName">First Name</label>
+                                    <input type="radio" class="btn-check" th:value="AGENT" name="role" id="role2" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="role2">Agent</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="username" id="username" class="form-control" aria-describedby="firstnameHelp" placeholder="Username...">
+                                    <label for="username">Username</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="firstName" id="firstName" class="form-control" aria-describedby="firstnameHelp" placeholder="First Name...">
+                                            <label for="firstName">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="lastName" id="lastName" class="form-control" aria-describedby="lastnameHelp" placeholder="Last Name...">
+                                            <label for="lastName">Last Name</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="lastName" id="lastName"
-                                               class="form-control"
-                                               aria-describedby="lastnameHelp"
-                                               placeholder="Last Name...">
-                                        <label for="lastName">Last Name</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="phone" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Phone...">
+                                            <label for="phone">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="UCN" id="UCN" class="form-control" aria-describedby="ucnHelp" placeholder="UCN...">
+                                            <label for="UCN">UCN</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="phone" id="phone" class="form-control"
-                                               aria-describedby="phoneHelp"
-                                               placeholder="Phone...">
-                                        <label for="phone">Phone</label>
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Email..">
+                                    <label for="email">Email address</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="country" id="country" class="form-control" aria-describedby="countryHelp" placeholder="Country..">
+                                            <label for="country">Country</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="city" id="city" class="form-control" aria-describedby="cityHelp" placeholder="City...">
+                                            <label for="city">City</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="UCN" id="UCN" class="form-control"
-                                               aria-describedby="ucnHelp"
-                                               placeholder="UCN...">
-                                        <label for="UCN">UCN</label>
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="fullAddress" id="fullAddress" class="form-control" placeholder="Full Address..">
+                                    <label for="fullAddress">Full Address</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" name="password" id="password" class="form-control" aria-describedby="passHelp" placeholder="Password..">
+                                            <label for="password">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password...">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" name="email" id="email" class="form-control"
-                                       aria-describedby="emailHelp"
-                                       placeholder="Email..">
-                                <label for="email">Email address</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="country" id="country" class="form-control"
-                                               aria-describedby="countryHelp"
-                                               placeholder="Country..">
-                                        <label for="country">Country</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="city" id="city" class="form-control"
-                                               aria-describedby="cityHelp"
-                                               placeholder="City...">
-                                        <label for="city">City</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" name="fullAddress" id="fullAddress" class="form-control"
-                                       placeholder="Full Address..">
-                                <label for="fullAddress">Full Address</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" name="password" id="password" class="form-control"
-                                               aria-describedby="passHelp"
-                                               placeholder="Password..">
-                                        <label for="password">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" name="confirmPassword" id="confirmPassword"
-                                               class="form-control"
-                                               placeholder="Confirm Password...">
-                                        <label for="confirmPassword">Confirm Password</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Vehicle</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Vehicle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                    <div class="modal-body">
-                        <form id="vehicle-form" th:action="@{/admin/create-vehicle}" method="post">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="category" id="category"
-                                       class="form-control"
-                                       aria-describedby="category"
-                                       placeholder="Vehicle Category">
-                                <label for="category">Category</label>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="brand" id="brand"
-                                               class="form-control"
-                                               aria-describedby="firstnameHelp"
-                                               placeholder="Vehicle Brand">
-                                        <label for="brand">Brand</label>
+                        <div class="modal-body">
+                            <form id="vehicle-form" th:action="@{/admin/create-vehicle}" method="post">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="category" id="category" class="form-control" aria-describedby="category" placeholder="Vehicle Category">
+                                    <label for="category">Category</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="brand" id="brand" class="form-control" aria-describedby="firstnameHelp" placeholder="Vehicle Brand">
+                                            <label for="brand">Brand</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" aria-describedby="lastnameHelp" placeholder="Registration Number">
+                                            <label for="registrationNumber">Registration №...</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="registrationNumber" id="registrationNumber"
-                                               class="form-control"
-                                               aria-describedby="lastnameHelp"
-                                               placeholder="Registration Number">
-                                        <label for="registrationNumber">Registration №...</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>
 
 
-<div class="main-container">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-left: 50px">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-customers-tab" data-bs-toggle="pill" data-bs-target="#customers"
-                    type="button" role="tab" aria-controls="customers" aria-selected="true">Customers
+    <div class="main-container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-left: 50px">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-customers-tab" data-bs-toggle="pill" data-bs-target="#customers" type="button" role="tab" aria-controls="customers" aria-selected="true">Customers
             </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-agents-tab" data-bs-toggle="pill" data-bs-target="#agents"
-                    type="button" role="tab" aria-controls="agents" aria-selected="false">Agents
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-agents-tab" data-bs-toggle="pill" data-bs-target="#agents" type="button" role="tab" aria-controls="agents" aria-selected="false">Agents
             </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-drivers-tab" data-bs-toggle="pill" data-bs-target="#drivers"
-                    type="button" role="tab" aria-controls="drivers" aria-selected="false">Drivers
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-drivers-tab" data-bs-toggle="pill" data-bs-target="#drivers" type="button" role="tab" aria-controls="drivers" aria-selected="false">Drivers
             </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-vehicles-tab" data-bs-toggle="pill" data-bs-target="#vehicles"
-                    type="button" role="tab" aria-controls="vehicles" aria-selected="false">Vehicles
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-vehicles-tab" data-bs-toggle="pill" data-bs-target="#vehicles" type="button" role="tab" aria-controls="vehicles" aria-selected="false">Vehicles
             </button>
-        </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="pills-customers-tab">
-            <ul class="list-group">
-                <div class="list-group-item"
-                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
-                    <th:block th:each="customer: ${customers}">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;" th:text="${customer.username}"></p>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
-                                <button class="btn btn-info me-md-2" type="button">Details</button>
-                                <button class="btn btn-danger" type="button">Ban User</button>
-                            </div>
-                        </li>
-                    </th:block>
-                </div>
-            </ul>
-        </div>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="pills-customers-tab">
+                <ul class="list-group">
+                    <div class="list-group-item" style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
+                        <th:block th:each="customer: ${customers}">
+                            <li class="row">
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${customer.username}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${customer.fullName}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${customer.email}"></p>
+                                </div>
+                                <div class="col">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                        <button class="btn btn-danger" type="button">Ban User</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </ul>
+            </div>
 
-        <div class="tab-pane fade" id="agents" role="tabpanel" aria-labelledby="pills-agents-tab">
-            <ul class="list-group">
-                <div class="list-group-item"
-                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
-                    <th:block th:each="agent: ${agents}">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;" th:text="${agent.username}"></p>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
-                                <button class="btn btn-info me-md-2" type="button">Details</button>
-                                <button class="btn btn-danger" type="button">Ban User</button>
-                            </div>
-                        </li>
-                    </th:block>
-                </div>
-            </ul>
-        </div>
-        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="pills-drivers-tab">
-            <ul class="list-group">
-                <div class="list-group-item"
-                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
-                    <th:block th:each="driver: ${drivers}">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;" th:text="${driver.username}"></p>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
-                                <button class="btn btn-info me-md-2" type="button">Details</button>
-                                <button class="btn btn-danger" type="button">Ban User</button>
-                            </div>
-                        </li>
-                    </th:block>
-                </div>
-            </ul>
-        </div>
-        <div class="tab-pane fade" id="vehicles" role="tabpanel" aria-labelledby="pills-vehicles-tab">
-            <ul class="list-group">
-                <div class="list-group-item"
-                     style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
-                    <th:block th:each="vehicle: ${vehicles}">
-                        <li class="row">
-                            <div class="col">
-                                <p style="margin-top: 10px;" th:text="${vehicle.brand}"></p>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
-                            </div>
-                        </li>
-                    </th:block>
-                </div>
-            </ul>
+            <div class="tab-pane fade" id="agents" role="tabpanel" aria-labelledby="pills-agents-tab">
+                <ul class="list-group">
+                    <div class="list-group-item" style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
+                        <th:block th:each="agent: ${agents}">
+                            <li class="row">
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${agent.username}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${agent.fullName}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${agent.email}"></p>
+                                </div>
+                                <div class="col">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                        <button class="btn btn-danger" type="button">Ban User</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="pills-drivers-tab">
+                <ul class="list-group">
+                    <div class="list-group-item" style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
+                        <th:block th:each="driver: ${drivers}">
+                            <li class="row">
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${driver.username}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${driver.fullName}"></p>
+                                </div>
+                                <div class="col">
+                                    <p style="margin-top: 10px;" th:text="${driver.email}"></p>
+                                </div>
+                                <div class="col">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                        <button class="btn btn-danger" type="button">Ban User</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="vehicles" role="tabpanel" aria-labelledby="pills-vehicles-tab">
+                <ul class="list-group">
+                    <div class="list-group-item" style="background-color: rgb(187, 235, 240); width: 50%; margin-left: 50px">
+                        <th:block th:each="vehicle: ${vehicles}">
+                            <li class="row">
+                                <div class="col-1">
+                                    <p style="margin-top: 10px;" th:text="${vehicle.category}"></p>
+                                </div>
+                                <div class="col-3">
+                                    <p style="margin-top: 10px;" th:text="${vehicle.brand}"></p>
+                                </div>
+                                <div class="col-3">
+                                    <p style="margin-top: 10px;" th:text="${vehicle.registrationNumber}"></p>
+                                </div>
+                                <div class="col">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end btn-sm">
+                                        <button class="btn btn-danger" type="button">Remove</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 
