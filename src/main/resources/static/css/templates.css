@@ -10,7 +10,7 @@
 
 .footer {
     margin-top: 100px;
-    color: white;
+
 }
 
 .show {
@@ -158,4 +158,9 @@
 
 .slide-text {
     color: black;
+}
+
+.useful-links{
+    color: white;
+    text-decoration: none;
 }
