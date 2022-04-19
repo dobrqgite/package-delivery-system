@@ -81,17 +81,22 @@ public class UserController {
     @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
     public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
         userService.updateUserDetails(authentication, editedUserCredentialsDto);
-        return "/user/edit_profile";
+        return "redirect:/user/edit-profile";
     }
 
     @RequestMapping(value = "/edit-address", method = RequestMethod.POST)
     public String editAddress(Authentication authentication, AddressUpdateDto addressUpdateDto) {
         userService.updateUserAddress(authentication, addressUpdateDto);
-        return "/user/edit_profile";
+        return "redirect:/user/edit-profile";
     }
 
     @RequestMapping(value = "/user-index", method = RequestMethod.GET)
-    public String getUserIndex() {
+    public String getUserIndex(Model model, Authentication authentication) {
+
+        UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
+
+        model.addAttribute("loggedInUser", userEntity);
+
         return "/user/user_index";
     }
 
@@ -100,9 +105,10 @@ public class UserController {
 
         // TODO: make model return packages by userId
         List<Package> packages = packageRepository.findAll().stream()
-                .filter(p -> p.getReceiver().getEmail().equals(((UserEntity) authentication.getPrincipal()).getEmail()))
                 .collect(Collectors.toUnmodifiableList());
+        UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
 
+        model.addAttribute("loggedInUser", userEntity);
         model.addAttribute("packages", packages);
         // might go boom
         model.addAttribute("packagesToReceive", authentication.getPrincipal());
@@ -110,14 +116,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/send-package", method = RequestMethod.GET)
-    public String getSendPackagePage() {
+    public String getSendPackagePage(Model model, Authentication authentication) {
+
+        UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
+
+        model.addAttribute("loggedInUser", userEntity);
         return "/user/send_package";
     }
 
     @RequestMapping(value = "/send-package", method = RequestMethod.POST)
     public String sendPackage(CreatePackageDto createPackageDto, Authentication authentication) {
         this.packageService.addPackage(createPackageDto, ((UserEntity) authentication.getPrincipal()).getEmail());
-        return "/user/send_package";
+        return "redirect:/user/send-package";
     }
 
     @GetMapping("/gateway")
