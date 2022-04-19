@@ -2,6 +2,7 @@ package com.example.package_delivery_system.services.impl;
 
 import com.example.package_delivery_system.data.dtos.vehicleDtos.CreateVehicleDto;
 import com.example.package_delivery_system.data.dtos.vehicleDtos.VehicleResponseDto;
+import com.example.package_delivery_system.data.entities.Vehicle;
 import com.example.package_delivery_system.data.repositories.VehicleRepository;
 import com.example.package_delivery_system.services.api.VehicleService;
 import org.modelmapper.ModelMapper;
@@ -22,7 +23,10 @@ public class VehicleServiceImpl implements VehicleService {
 
 
     @Override
-    public VehicleResponseDto addVehicle(CreateVehicleDto createVehicleDto) {
-        return null;
+    public VehicleResponseDto createVehicle(CreateVehicleDto createVehicleDto) {
+        Vehicle vehicle = this.modelMapper.map(createVehicleDto, Vehicle.class);
+        this.vehicleRepository.save(vehicle);
+
+        return this.modelMapper.map(vehicle, VehicleResponseDto.class);
     }
 }

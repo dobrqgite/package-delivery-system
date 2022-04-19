@@ -67,7 +67,6 @@ public class UserController {
 
     @RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
     public String editProfile(Authentication authentication, Model model) {
-        // DESN'T WORK!!!MUST FIX!!
         Address address = ((UserEntity) authentication.getPrincipal()).getAddress();
         UserEntity userEntity = ((UserEntity) authentication.getPrincipal());
 
@@ -77,7 +76,6 @@ public class UserController {
         return "/user/edit_profile";
     }
 
-    // TODO: implement method and query from repository
     @RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
     public String editCredentials(Authentication authentication, EditUserCredentialsDto editedUserCredentialsDto) {
         userService.updateUserDetails(authentication, editedUserCredentialsDto);

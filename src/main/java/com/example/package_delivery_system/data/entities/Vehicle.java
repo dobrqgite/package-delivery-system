@@ -1,6 +1,5 @@
 package com.example.package_delivery_system.data.entities;
 
-import com.example.package_delivery_system.data.enums.VehicleType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +18,8 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private VehicleType type;
+    @Column(name = "category")
+    private String category;
 
     @Column
     private String brand;
@@ -39,11 +37,11 @@ public class Vehicle {
         }
         if (o == null || getClass() != o.getClass()) return false;
         Vehicle vehicle = (Vehicle) o;
-        return Objects.equals(id, vehicle.id) && type == vehicle.type && Objects.equals(registrationNumber, vehicle.registrationNumber);
+        return Objects.equals(id, vehicle.id) && category == vehicle.category && Objects.equals(registrationNumber, vehicle.registrationNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, registrationNumber);
+        return Objects.hash(id, category, registrationNumber);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.package_delivery_system.data.dtos.vehicleDtos;
 
-import com.example.package_delivery_system.data.enums.VehicleType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,7 @@ public class VehicleResponseDto {
 
     private Long id;
 
-    private VehicleType type;
+    private String category;
 
     private String brand;
 

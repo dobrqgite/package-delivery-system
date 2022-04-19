@@ -6,5 +6,5 @@ import com.example.package_delivery_system.data.dtos.vehicleDtos.VehicleResponse
 
 public interface VehicleService {
 
-     VehicleResponseDto addVehicle(CreateVehicleDto createVehicleDto);
+     VehicleResponseDto createVehicle(CreateVehicleDto createVehicleDto);
 }

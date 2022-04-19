@@ -154,13 +154,13 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="vehicle-form" th:action="@{/admin/admin-home}" method="post">
+                        <form id="vehicle-form" th:action="@{/admin/admin-create-vehicle}" method="post">
                             <div class="form-floating mb-3">
-                                <input type="text" name="type" id="type"
+                                <input type="text" name="category" id="category"
                                        class="form-control"
-                                       aria-describedby="firstnameHelp"
-                                       placeholder="Vehicle Type">
-                                <label for="type">Type</label>
+                                       aria-describedby="category"
+                                       placeholder="Vehicle Category">
+                                <label for="category">Category</label>
                             </div>
                             <div class="row">
                                 <div class="col">
