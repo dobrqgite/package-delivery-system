@@ -6,5 +6,4 @@ import com.example.package_delivery_system.data.dtos.packageDtos.PackageResponse
 public interface PackageService {
 
     PackageResponseDto addPackage(CreatePackageDto createPackageDto, String currentlyLoggedInUserEmail);
-
 }

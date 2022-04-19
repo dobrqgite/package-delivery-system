@@ -9,11 +9,4 @@ import java.util.List;
 @Repository
 public interface OfficeRepository extends JpaRepository<Office, Long> {
 
-    List<Office> findAll();
-
-    Office findOfficeById(Long id);
-
-    Office findOfficeByName(String name);
-
-    Office findOfficeByAddressId(Long addressId);
 }

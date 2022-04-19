@@ -1,8 +1,10 @@
 package com.example.package_delivery_system.services.api;
 
-import java.io.IOException;
+import com.example.package_delivery_system.data.dtos.vehicleDtos.CreateVehicleDto;
+import com.example.package_delivery_system.data.dtos.vehicleDtos.VehicleResponseDto;
+
 
 public interface VehicleService {
 
-     void seedVehicles() throws IOException;
+     VehicleResponseDto addVehicle(CreateVehicleDto createVehicleDto);
 }

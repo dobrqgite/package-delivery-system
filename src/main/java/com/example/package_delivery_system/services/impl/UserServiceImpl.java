@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = new ModelMapper();
     }
 
-    //make method return a response dto
     @Override
     @Transactional
     public UserResponseDto register(UserRegisterDto userRegisterDto) {
@@ -103,7 +102,6 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto updateUserDetails(Authentication loggedInUser, EditUserCredentialsDto userUpdateDto){
 
         UserEntity updatedUser = modelMapper.map(userUpdateDto, UserEntity.class);
-        //find the logged in user
         UserEntity userToUpdate = (UserEntity) loggedInUser.getPrincipal();
 
         userToUpdate.setUsername(updatedUser.getUsername());
