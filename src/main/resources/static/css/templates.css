@@ -10,7 +10,6 @@
 
 .footer {
     margin-top: 100px;
-
 }
 
 .show {
@@ -44,7 +43,7 @@
     background: white;
 }
 
-.border-wrapper{
+.border-wrapper {
     background: linear-gradient(to left, #0cf9e5, #5a84eb);
     padding: 3px;
 }
@@ -160,7 +159,13 @@
     color: black;
 }
 
-.useful-links{
+.useful-links {
     color: white;
     text-decoration: none;
+}
+
+h4,
+h5 {
+    color: rgb(8, 71, 103);
+    font-weight: bold;
 }
